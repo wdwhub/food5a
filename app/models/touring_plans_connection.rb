@@ -17,14 +17,20 @@ class TouringPlansConnection
   conn.headers[:user_agent] = 'MyLib v1.2'
 
   CONNECTION = conn
+  DEFAULT_QUERY   = {}
   # response = conn.get '/repos/technoweenie/faraday'
   # response.body['issues_count']  #=> 8
-  def initialize(connection: CONNECTION)
-    @connection       = connection
+  def initialize(options = {})
+    @connection       = options.fetch(:connection, CONNECTION)
+    @query            = options.fetch(:query, DEFAULT_QUERY)
   end
 
   def title
     "i am touring plans"
+  end
+  
+  def query(params={})
+    @query.update(params)
   end
   
 end
