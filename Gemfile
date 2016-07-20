@@ -64,4 +64,9 @@ end
 gem 'high_voltage'
 gem 'bourbon', '5.0.0.beta.6'
 gem 'neat', '~> 1.8.0'
-gem 'refills', group: [:development, :test]
+#customization
+gem 'turbolinks', '~> 5.0'
+
+#consume json api
+gem 'faraday', '~> 0.9.2' 
+gem 'faraday_middleware', '~> 0.10.0'
