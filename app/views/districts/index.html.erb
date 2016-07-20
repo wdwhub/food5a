@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Districts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Permalink</th>
+      <th>Is park</th>
+      <th>Credit</th>
+      <th>Photo url</th>
+      <th>Flickr search term</th>
+      <th>Published at</th>
+      <th>Wdw uri</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @districts.each do |district| %>
+      <tr>
+        <td><%= district.name %></td>
+        <td><%= district.permalink %></td>
+        <td><%= district.is_park %></td>
+        <td><%= district.credit %></td>
+        <td><%= district.photo_url %></td>
+        <td><%= district.flickr_search_term %></td>
+        <td><%= district.published_at %></td>
+        <td><%= district.wdw_uri %></td>
+        <td><%= link_to 'Show', district %></td>
+        <td><%= link_to 'Edit', edit_district_path(district) %></td>
+        <td><%= link_to 'Destroy', district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New District', new_district_path %>

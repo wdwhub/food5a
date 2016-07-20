@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @district.name %>
+</p>
+
+<p>
+  <strong>Permalink:</strong>
+  <%= @district.permalink %>
+</p>
+
+<p>
+  <strong>Is park:</strong>
+  <%= @district.is_park %>
+</p>
+
+<p>
+  <strong>Credit:</strong>
+  <%= @district.credit %>
+</p>
+
+<p>
+  <strong>Photo url:</strong>
+  <%= @district.photo_url %>
+</p>
+
+<p>
+  <strong>Flickr search term:</strong>
+  <%= @district.flickr_search_term %>
+</p>
+
+<p>
+  <strong>Published at:</strong>
+  <%= @district.published_at %>
+</p>
+
+<p>
+  <strong>Wdw uri:</strong>
+  <%= @district.wdw_uri %>
+</p>
+
+<%= link_to 'Edit', edit_district_path(@district) %> |
+<%= link_to 'Back', districts_path %>
