@@ -33,4 +33,10 @@ class TouringPlansConnection
     @query.update(params)
   end
   
+  def connect(http_method: "get", relative_path: "/", extension: ".json")
+    # connection.get should be connection.[http_method], but there's no time to research how to set that up
+    response  = connection.get "#{relative_path}#{extension}"
+    result    = response.body
+  end
+  
 end
