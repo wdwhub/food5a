@@ -1,5 +1,5 @@
 class TouringPlansClient
-  attr_accessor :connection, :routes
+  attr_accessor :connection, :routes, :permalink
   # As of 7/20/16, Disney Springs currently does not have a json payload.  It must be scraped.
   DEFAULT_ROUTES = {
     magic_kingdom: {
@@ -26,21 +26,27 @@ class TouringPlansClient
       method:   "get",
       path:     "blizzard-beach/dining"
     },
-    resort_dining: {
+    resort_dining_index: {
       method:   "get",
       path:     "walt-disney-world/resort-dining"
+    },
+    resort_dining: {
+      method:   "get",
+      path:     "walt-disney-world/dining"
     }
   }
-  def initialize(connection: TouringPlansConnection.new, routes: DEFAULT_ROUTES)
+  def initialize(connection: TouringPlansConnection.new, routes: DEFAULT_ROUTES, permalink: nil)
     @connection = connection
     @routes     = routes
+    @permalink  = permalink
   end
 
   def method_missing(method)
     route_map = routes.fetch(method)
     
     http_method   = route_map.fetch(:method)
-    relative_path = route_map.fetch(:path)
+    section_path  = route_map.fetch(:path) 
+    relative_path = permalink.to_s.size > 0 ? [section_path, permalink].join("/") : section_path
     extension     = ".json"
 
     # call the connection for records

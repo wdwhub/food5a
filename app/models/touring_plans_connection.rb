@@ -18,8 +18,7 @@ class TouringPlansConnection
 
   CONNECTION = conn
   DEFAULT_QUERY   = {}
-  # response = conn.get '/repos/technoweenie/faraday'
-  # response.body['issues_count']  #=> 8
+
   def initialize(options = {})
     @connection       = options.fetch(:connection, CONNECTION)
     @query            = options.fetch(:query, DEFAULT_QUERY)
