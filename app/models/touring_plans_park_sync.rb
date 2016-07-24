@@ -9,51 +9,49 @@ class TouringPlansParkSync
     "touring plans park sync"
   end
 
+  def update_all_venues
+    update_all_resort_venues
+    update_all_park_venues
+  end
+  
   def update_all_resort_venues
     list = list_resort_venues(route: :resort_dining_index)
     list.collect do |resort|
       puts "++++++++  #{resort.name} ++++++++++"
       update_the_venues_of_a_resort(route: :resort_dining, resort: resort)
     end
-    # list.each do |venue|
-    #   updated_venue = update_eatery_from_touringplans_com(route: park_route_key, permalink: venue.permalink)
-    #   puts updated_venue
-    # end
   end
 
   def update_the_venues_of_a_resort(route: :resort_dining, resort:)
     # tps = TouringPlansParkSync.new;tps.client.permalink = "intermission-food-court";tps.client.send(:resort_dining)
     
     resort.dinings.each do |venue|
-      updated_venue = update_eatery_from_touringplans_com(route: :resort_dining, permalink: venue.permalink)
+      updated_venue = update_eatery_from_touringplans_com(route: :resort_dining, representation: {name: venue.name, permalink: venue.permalink} )
       puts updated_venue
     end
   end
 
   def update_all_park_venues
-    park_routes_keys = client.routes.keys.find_all { |i|  i != :resort_dining }
     park_routes_keys.each do |park_route_key|
       update_park_venues(park_route_key)
     end
   end
 
   def update_park_venues(park_route_key)
-    list = self.list_park_venues(route: park_route_key)
-    list.collect { |venue| venue.name }
+    list = list_park_venues(route: park_route_key)
+    # list.collect { |venue| venue.name }
     list.each do |venue|
-      updated_venue = update_eatery_from_touringplans_com(route: park_route_key, permalink: venue.permalink)
+      updated_venue = update_eatery_from_touringplans_com(route: park_route_key, representation: {name: venue.name, permalink: venue.permalink} )
       puts updated_venue
     end
   end
 
-  def update_eatery_from_touringplans_com(route:, permalink:)
+  def update_eatery_from_touringplans_com(route:, representation: {})
+    # return "route is #{route} and rep is #{representation} and permalink is #{representation[:permalink]}"
     tp_eatery_default     = TouringplansMissingVenue.new
-    return TouringPlansVenue.new({name: tp_eatery_default.name}) if permalink.to_s.length == 0
-    client.permalink      = permalink
-    result                = client.send(route)
-    remote_tp_park_venue  = TouringPlansParkVenue.new(client.send(route))
+    return tp_eatery_default if representation[:permalink].to_s.length == 0
+    remote_tp_park_venue = TouringplansVenueFactory.for(representation: representation).add_details(route: route)
 
-    # tp_eatery             = TouringPlansEatery.first_or_create(permalink: remote_tp_park_venue.permalink)
     tp_eatery             = TouringPlansEatery.where(permalink: remote_tp_park_venue.permalink).first_or_create
     
     tp_eatery.update(name:      remote_tp_park_venue.name                       || tp_eatery_default.name,
@@ -88,6 +86,10 @@ class TouringPlansParkSync
        accepts_tiw:  remote_tp_park_venue.accepts_tiw                           || tp_eatery_default.accepts_tiw,
        accepts_reservations:  remote_tp_park_venue.accepts_reservations         || tp_eatery_default.accepts_reservations,
 
+       dinable_id:            remote_tp_park_venue.dinable_id                   || tp_eatery_default.dinable_id,
+       dinable_type:          remote_tp_park_venue.dinable_type                 || tp_eatery_default.dinable_type,
+
+
        kosher_available:  remote_tp_park_venue.kosher_available                 || tp_eatery_default.kosher_available,
        location_details:  remote_tp_park_venue.location_details                 || tp_eatery_default.location_details,
        operator_id:  remote_tp_park_venue.operator_id                           || tp_eatery_default.operator_id,
@@ -114,4 +116,7 @@ class TouringPlansParkSync
     list_of_representations = list.collect { |venue| TouringPlansResort.new(venue)  }
   end
 
+  def park_routes_keys
+    client.routes.keys.find_all { |i|  i != :resort_dining }.find_all { |i|  i != :resort_dining_index }
+  end
 end
