@@ -20,7 +20,7 @@ class DfbConnection
   
   def connect(http_method: "get", relative_path: "/")
     response  = connection.get("#{base_uri}#{relative_path}")
-    result    = response.parser.css('div.entry-content')
+    result    = response.parser
   end
   
 end

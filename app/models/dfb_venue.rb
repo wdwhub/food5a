@@ -1,0 +1,3 @@
+class DfbVenue < Representation
+  
+end
