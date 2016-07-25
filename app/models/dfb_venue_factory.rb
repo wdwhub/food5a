@@ -38,7 +38,7 @@ module DfbVenueFactory
       client.permalink      = self.permalink
       parsable_remote_venue  = client.send(route)
       # resulting_hash         = DfbReviewParser.new.parse_details(parsable_document: parsable_remote_venue)
-      resulting_hash = DfbReviewParser.new(parsable_document:"mew").parse_details
+      resulting_hash = DfbReviewParser.new(parsable_document: parsable_remote_venue).parse_details
       DfbVenue.new(resulting_hash)
     end
     
