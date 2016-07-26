@@ -1,0 +1,2 @@
+class DfbEatery < ApplicationRecord
+end

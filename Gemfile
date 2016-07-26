@@ -71,3 +71,7 @@ gem 'turbolinks', '~> 5.0'
 gem 'faraday', '~> 0.9.2' 
 gem 'faraday_middleware', '~> 0.10.0'
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
+
+#admin
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'

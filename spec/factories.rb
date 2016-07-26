@@ -1,4 +1,16 @@
 FactoryGirl.define do
+  factory :dfb_eatery do
+    name "MyString"
+    permalink "MyText"
+    description "MyText"
+    service "MyString"
+    type_of_food "MyString"
+    location "MyString"
+    tables_in_wonderland "MyString"
+    reviewlinks "MyText"
+    important_info "MyText"
+    you_might_also_like "MyString"
+  end
   factory :remote_touring_plans_park_eatery_detail do
     name "Tony's Town Square Restaurant"
     permalink "tonys-town-square-restaurant"
