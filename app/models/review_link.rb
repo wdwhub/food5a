@@ -1,0 +1,3 @@
+class ReviewLink < Representation
+
+end

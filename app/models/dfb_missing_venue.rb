@@ -32,8 +32,8 @@ class DfbMissingVenue
     ""
   end
   
-  def reviews
-    ""
+  def reviewlinks
+    []
   end
 
   def important_info

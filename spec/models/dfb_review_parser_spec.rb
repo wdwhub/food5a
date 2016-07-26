@@ -26,4 +26,14 @@ RSpec.describe DfbReviewParser, type: :model do
       expect(DfbReviewParser.new(parsable_document: []).collect_description).to eq("Counter Service")
     end
   end
+
+  describe '#collect_service of cheshire-cafe' do
+    it 'contains the word "Service"' do
+      pulled_document      = Nokogiri::HTML(open(Rails.root + 'spec/support/shared_examples/cheshire-cafe.html'))
+      parsable_document    = pulled_document.css('div.entry-content')
+      expect(DfbReviewParser.new(parsable_document: parsable_document).collect_description).to eq("Counter Service")
+    end
+  end
+
 end
+collect_service

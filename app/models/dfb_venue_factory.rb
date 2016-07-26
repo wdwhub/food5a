@@ -35,11 +35,11 @@ module DfbVenueFactory
 
     def add_details(client: DfbClient.new, route: :wdw_dining_review)
       return DfbMissingVenue.new if permalink.to_s.length == 0
-      client.permalink      = self.permalink
-      parsable_remote_venue  = client.send(route)
-      # resulting_hash         = DfbReviewParser.new.parse_details(parsable_document: parsable_remote_venue)
-      resulting_hash = DfbReviewParser.new(parsable_document: parsable_remote_venue).parse_details
-      DfbVenue.new(resulting_hash)
+      client.permalink              = self.permalink
+      parsable_remote_venue         = client.send(route)
+      resulting_hash                = DfbReviewParser.new(parsable_document: parsable_remote_venue).parse_details
+      complete_hash                 = ({name: self.name, permalink: self.permalink}).merge(resulting_hash)
+      DfbVenue.new(complete_hash)
     end
     
   end
@@ -50,17 +50,32 @@ module DfbVenueFactory
       return DfbMissingVenue.new if permalink.to_s.length == 0
       initial_details = self.to_h
       resulting_hash  = initial_details.merge({:extinct_on => Time.new(2016, 07, 01)})
-      # DfbVenue.new(resulting_hash)
+      DfbVenue.new(resulting_hash)
+    end
+  end
+  
+  class DfbBadPermalinkVenue < Representation
+  
+    def add_details(client: "", route: :wdw_dining_review)
+      return DfbMissingVenue.new if permalink.to_s.length == 0
+      initial_details = self.to_h
+      resulting_hash  = initial_details.merge({:description => "information not found"})
+      DfbVenue.new(resulting_hash)
     end
   end
   
   DEFAULT_CLASS = DfbNormalVenue
   
   SPECIALIZED_CLASSES = {
-    "normal"                                  => DfbNormalVenue,
-    "kouzzina-by-cat-cora"                    => DfbExtinctVenue
+    "normal"                                                                              => DfbNormalVenue,
+    "http://www.disneyfoodblog.com/http:/www.disneyfoodblog.com/team-spirits-pool-bar/"   => DfbBadPermalinkVenue,
+    "http://www.disneyfoodblog.com/http:/www.disneyfoodblog.com/tablas-frontera/"         => DfbBadPermalinkVenue,
+    "http://www.disneyfoodblog.com/tablas-frontera/"                                      => DfbBadPermalinkVenue,
+    "http://www.disneyfoodblog.com/team-spirits-pool-bar/"                                => DfbBadPermalinkVenue,
+    "http://www.disneyfoodblog.com/el-pirata-y-el-perico/"                                => DfbExtinctVenue,
+    "el-pirata-y-el-perico"                                                               => DfbExtinctVenue
   }
-  
+   
   DEFAULT_WDW_DINING_INDEX_NUMBERS = {
    magic_kingdom:                      4,
    epcot_future_world:                 5,
