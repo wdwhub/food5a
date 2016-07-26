@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723230613) do
+ActiveRecord::Schema.define(version: 20160726045438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,21 @@ ActiveRecord::Schema.define(version: 20160723230613) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  end
+
+  create_table "dfb_eateries", force: :cascade do |t|
+    t.string   "name"
+    t.text     "permalink"
+    t.text     "description"
+    t.string   "service"
+    t.string   "type_of_food"
+    t.string   "location"
+    t.string   "tables_in_wonderland"
+    t.text     "reviewlinks"
+    t.text     "important_info"
+    t.string   "you_might_also_like"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "districts", force: :cascade do |t|

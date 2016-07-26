@@ -17,7 +17,7 @@ class DfbSync
     list = DfbVenueFactory::Venue.new.create_summary_dfb_venues
     list.each do |venue|
       updated_venue = update_eatery_from_disneyfoodblog_com(representation: venue.to_h )
-      puts updated_venue
+      # puts updated_venue
       # puts venue.to_h
     end
   end
@@ -25,34 +25,24 @@ class DfbSync
   def update_eatery_from_disneyfoodblog_com(representation: {}, route: :wdw_dining_review)
     # return "rep is #{representation} and permalink is #{representation[:permalink]}"
     remote_dfb_venue = DfbVenueFactory.for(representation: representation).add_details(route: route)
-  #
-  #   dfb_eatery             = DfbEatery.where(permalink: remote_dfb_venue.permalink).first_or_create
-  #
-  #   dfb_eatery.update(name:     remote_dfb_venue.name                       || dfb_eatery_default.name,
-  #     operator_type:            remote_dfb_venue.operator_type              || dfb_eatery_default.operator_type
-  #   )
-  # puts "==== #{dfb_eatery.permalink} ==="
-  # puts dfb_eatery
-  # puts "======================="
-  #
-  # def list_resort_venues(route: :resort_dining_index)
-  #   client.permalink        = ""
-  #   results                  = client.wdw_dining_index
-  #   ## what returns in result needs further parsing
-  #   list                    = Array(result).flatten
-  #   list_of_representations = list.collect { |venue| DfbVenue.new(venue)  }
-  # end
-  #
-  # def list_magic_kingdom_venues(results: client.wdw_dining_index)
-  #   parsable_document = results.css('p')[4].css('a')
-  #   links = parsable_document.collect { |link| {name: link.text, permalink: link['href']}}
-  #   magic_kindom_venues = links.collect { |venue| DfbVenue.new(venue)}
-  # end
-  #
-  # def list_magic_kingdom_venues(results: client.wdw_dining_index)
-  #   parsable_document = results.css('p')[4].css('a')
-  #   links = parsable_document.collect { |link| {name: link.text, permalink: link['href']}}
-  #   magic_kindom_venues = links.collect { |venue| DfbVenue.new(venue)}
+ 
+    dfb_eatery             = DfbEatery.where(permalink: remote_dfb_venue.permalink).first_or_create
+  # We do not need to have a fallback value because we did that in the parsing and creation of the remote venue
+    dfb_eatery.update(
+          name:                     remote_dfb_venue.name,
+          description:              remote_dfb_venue.description,
+          service:                  remote_dfb_venue.service,
+          type_of_food:             remote_dfb_venue.type_of_food,
+          location:                 remote_dfb_venue.location,
+          tables_in_wonderland:     remote_dfb_venue.tables_in_wonderland,
+          reviewlinks:              remote_dfb_venue.reviewlinks.to_s,
+          important_info:           remote_dfb_venue.important_info,
+          you_might_also_like:      remote_dfb_venue.you_might_also_like,
+          permalink:                remote_dfb_venue.permalink
+    )
+    puts "==== #{dfb_eatery.permalink} ==="
+    puts dfb_eatery
+    puts "======================="
   end
-  
 end
+  
