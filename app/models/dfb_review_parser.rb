@@ -20,7 +20,7 @@ class DfbReviewParser
     representable_hash["disney_dining_plan"]     = collect_disney_dining_plan       || default.disney_dining_plan
     representable_hash["location"]               = collect_location                 || default.location
     representable_hash["tables_in_wonderland"]   = collect_tables_in_wonderland     || default.tables_in_wonderland
-    representable_hash["reviewlinks"]                = collect_reviews                  ||default.reviewlinks
+    representable_hash["reviewlinks"]            = collect_reviews                  ||default.reviewlinks
     representable_hash[:important_info]          = collect_important_info           || default.important_info
     representable_hash[:disney_food_blog_posts]  = collect_blog_posts               || default.blog_posts
     representable_hash[:you_might_also_like]     = collect_you_might_also_like      || default.you_might_also_like

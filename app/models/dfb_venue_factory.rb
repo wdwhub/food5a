@@ -19,14 +19,29 @@ module DfbVenueFactory
          }
        }
        flattened_hash_array = collection_hash_array.flatten
-       venues = flattened_hash_array.collect { |hash| DfbVenue.new(hash)}
+       filtered_collection = flattened_hash_array.collect do |link|
+         {name: filter_name(link[:name], link[:permalink]),
+         permalink: link[:permalink]}
+       end
+       
+       venues = filtered_collection.collect { |hash| DfbVenue.new(hash)}
     end
     
     def grab_and_parse_wdw_dining_index_page
       result = client.wdw_dining_index
       result.css('div.entry-content')
     end
+    
     def add_details(client:"", route: "")
+    end
+    
+    def filter_name(name, permalink)
+      name = name.to_s.strip
+      if name.length < 3
+        # name = "empty"
+        name = permalink.split("disneyfoodblog.com")[1].gsub(/-/, " ").gsub(/\//, "").titleize if name.empty?
+      end
+      result = name
     end
   end
 
@@ -50,7 +65,9 @@ module DfbVenueFactory
       return DfbMissingVenue.new if permalink.to_s.length == 0
       initial_details = self.to_h
       resulting_hash  = initial_details.merge({:extinct_on => Time.new(2016, 07, 01)})
-      DfbVenue.new(resulting_hash)
+      complete_hash                 = ({name: "#{self.name} (Extinct)", 
+        permalink: self.permalink}).merge(resulting_hash)
+      DfbVenue.new(complete_hash)
     end
   end
   
@@ -59,19 +76,39 @@ module DfbVenueFactory
     def add_details(client: "", route: :wdw_dining_review)
       return DfbMissingVenue.new if permalink.to_s.length == 0
       initial_details = self.to_h
-      resulting_hash  = initial_details.merge({:description => "information not found"})
-      DfbVenue.new(resulting_hash)
+      resulting_hash  = initial_details.merge({:description => "permalink not found"})
+      complete_hash                 = ({name: "#{self.name} (Bad Permalink)", 
+        permalink: self.permalink}).merge(resulting_hash)
+      DfbVenue.new(complete_hash)
     end
   end
   
-  DEFAULT_CLASS = DfbNormalVenue
+  class DfbBadParsingVenue < Representation
   
+    def add_details(client: "", route: :wdw_dining_review)
+      return DfbMissingVenue.new if permalink.to_s.length == 0
+      initial_details = self.to_h
+      resulting_hash  = initial_details.merge({:description => "cannot collect information"})
+      complete_hash                 = ({name: "#{self.name} (Bad Permalink)", permalink: self.permalink}).merge(resulting_hash)
+      DfbVenue.new(complete_hash)
+    end
+  end
+              
+  DEFAULT_CLASS = DfbNormalVenue
   SPECIALIZED_CLASSES = {
     "normal"                                                                              => DfbNormalVenue,
-    "http://www.disneyfoodblog.com/http:/www.disneyfoodblog.com/team-spirits-pool-bar/"   => DfbBadPermalinkVenue,
-    "http://www.disneyfoodblog.com/http:/www.disneyfoodblog.com/tablas-frontera/"         => DfbBadPermalinkVenue,
     "http://www.disneyfoodblog.com/tablas-frontera/"                                      => DfbBadPermalinkVenue,
     "http://www.disneyfoodblog.com/team-spirits-pool-bar/"                                => DfbBadPermalinkVenue,
+    "http://www.disneyfoodblog.com/2010/09/30/first-look-epcots-new-karamell-kuche/"      => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/2013/09/04/first-look-starbucks-opens-at-epcots-fountain-view-cafe/" => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/2013/05/29/first-look-lartisan-des-glaces-sorbet-and-ice-cream-shop-in-epcots-france-is-open-see-full-menu-and-photos-here/"                               => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/mama-melroses-ristorante-italiano/"                    => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/flame-tree-barbecue/"                                  => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/old-port-royale-food-court/"                           => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/chefs-de-france/"                                      => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/be-our-guest-restaurant/"                              => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/contempo-cafe/"                                        => DfbBadParsingVenue,
+    "http://www.disneyfoodblog.com/kouzzina/"                                             => DfbExtinctVenue,
     "http://www.disneyfoodblog.com/el-pirata-y-el-perico/"                                => DfbExtinctVenue,
     "el-pirata-y-el-perico"                                                               => DfbExtinctVenue
   }

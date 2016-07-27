@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :dfb_article do
+    title "MyString"
+    link "MyText"
+    dfb_article nil
+  end
   factory :dfb_eatery do
     name "MyString"
     permalink "MyText"
