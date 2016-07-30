@@ -35,6 +35,7 @@ class DfbSync
   # We do not need to have a fallback value because we did that in the parsing and creation of the remote venue
     dfb_eatery.update(
           name:                     remote_dfb_venue.name,
+          permalink:                remote_dfb_venue.permalink,
           description:              remote_dfb_venue.description,
           service:                  remote_dfb_venue.service,
           type_of_food:             remote_dfb_venue.type_of_food,

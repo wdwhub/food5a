@@ -89,7 +89,8 @@ module DfbVenueFactory
       return DfbMissingVenue.new if permalink.to_s.length == 0
       initial_details = self.to_h
       resulting_hash  = initial_details.merge({:description => "cannot collect information"})
-      complete_hash                 = ({name: "#{self.name} (Bad Permalink)", permalink: self.permalink}).merge(resulting_hash)
+      complete_hash                 = ({name: "#{self.name} (Bad Permalink)", 
+        permalink: self.permalink}).merge(resulting_hash)
       DfbVenue.new(complete_hash)
     end
   end

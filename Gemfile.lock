@@ -123,6 +123,7 @@ GEM
       activesupport
       capybara
       i18n
+    fuzzy_match (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -356,6 +357,7 @@ DEPENDENCIES
   faraday_middleware (~> 0.10.0)
   flutie
   formulaic
+  fuzzy_match (~> 2.1)
   high_voltage
   honeybadger
   jquery-rails

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727011014) do
+ActiveRecord::Schema.define(version: 20160727033449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,11 @@ ActiveRecord::Schema.define(version: 20160727011014) do
     t.string   "title"
     t.text     "link"
     t.integer  "dfb_eatery_id"
+    t.integer  "venue_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["dfb_eatery_id"], name: "index_dfb_articles_on_dfb_eatery_id", using: :btree
+    t.index ["venue_id"], name: "index_dfb_articles_on_venue_id", using: :btree
   end
 
   create_table "dfb_eateries", force: :cascade do |t|
@@ -120,5 +122,57 @@ ActiveRecord::Schema.define(version: 20160727011014) do
     t.string   "dinable_type"
   end
 
+  create_table "venues", force: :cascade do |t|
+    t.string   "name"
+    t.text     "permalink"
+    t.string   "category_code"
+    t.string   "portion_size"
+    t.string   "cost_code"
+    t.string   "cuisine"
+    t.string   "phone_number"
+    t.string   "entree_range"
+    t.string   "when_to_go"
+    t.string   "parking"
+    t.string   "bar"
+    t.string   "wine_list"
+    t.string   "dress"
+    t.string   "awards"
+    t.string   "breakfast_hours"
+    t.string   "lunch_hours"
+    t.string   "dinner_hours"
+    t.string   "house_specialties"
+    t.string   "counter_quality_rating"
+    t.string   "counter_value_rating"
+    t.float    "table_quality_rating"
+    t.float    "table_value_rating"
+    t.float    "overall_rating"
+    t.float    "service_rating"
+    t.float    "friendliness_rating"
+    t.integer  "thumbs_up"
+    t.string   "adult_breakfast_menu_url"
+    t.string   "adult_lunch_menu_url"
+    t.string   "adult_dinner_menu_url"
+    t.string   "child_breakfast_menu_url"
+    t.string   "child_lunch_menu_url"
+    t.string   "child_dinner_menu_url"
+    t.boolean  "requires_credit_card"
+    t.boolean  "requires_pre_payment"
+    t.datetime "extinct_on"
+    t.datetime "opened_on"
+    t.string   "disney_permalink"
+    t.string   "code"
+    t.string   "short_name"
+    t.boolean  "accepts_tiw"
+    t.boolean  "accepts_reservations"
+    t.boolean  "kosher_available"
+    t.string   "location_details"
+    t.integer  "operator_id"
+    t.text     "operator_url"
+    t.string   "operator_type"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   add_foreign_key "dfb_articles", "dfb_eateries"
+  add_foreign_key "dfb_articles", "venues"
 end

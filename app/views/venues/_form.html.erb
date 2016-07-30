@@ -1,0 +1,56 @@
+<%= simple_form_for(@venue) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :permalink %>
+    <%= f.input :category_code %>
+    <%= f.input :portion_size %>
+    <%= f.input :cost_code %>
+    <%= f.input :cuisine %>
+    <%= f.input :phone_number %>
+    <%= f.input :entree_range %>
+    <%= f.input :when_to_go %>
+    <%= f.input :parking %>
+    <%= f.input :bar %>
+    <%= f.input :wine_list %>
+    <%= f.input :dress %>
+    <%= f.input :awards %>
+    <%= f.input :breakfast_hours %>
+    <%= f.input :lunch_hours %>
+    <%= f.input :dinner_hours %>
+    <%= f.input :house_specialties %>
+    <%= f.input :counter_quality_rating %>
+    <%= f.input :counter_value_rating %>
+    <%= f.input :table_quality_rating %>
+    <%= f.input :table_value_rating %>
+    <%= f.input :overall_rating %>
+    <%= f.input :service_rating %>
+    <%= f.input :friendliness_rating %>
+    <%= f.input :thumbs_up %>
+    <%= f.input :adult_breakfast_menu_url %>
+    <%= f.input :adult_lunch_menu_url %>
+    <%= f.input :adult_dinner_menu_url %>
+    <%= f.input :child_breakfast_menu_url %>
+    <%= f.input :child_lunch_menu_url %>
+    <%= f.input :child_dinner_menu_url %>
+    <%= f.input :requires_credit_card %>
+    <%= f.input :requires_pre_payment %>
+    <%= f.input :extinct_on %>
+    <%= f.input :opened_on %>
+    <%= f.input :disney_permalink %>
+    <%= f.input :code %>
+    <%= f.input :short_name %>
+    <%= f.input :accepts_tiw %>
+    <%= f.input :accepts_reservations %>
+    <%= f.input :kosher_available %>
+    <%= f.input :location_details %>
+    <%= f.input :operator_id %>
+    <%= f.input :operator_url %>
+    <%= f.input :operator_type %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

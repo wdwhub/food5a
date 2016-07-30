@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Venues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Thumbs up</th>
+      <th>Extinct on</th>
+      <th>Accepts tiw</th>
+      <th>Accepts reservations</th>
+      <th>Location details</th>
+      <th>Operator</th>
+      <th>Operator type</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @venues.each do |venue| %>
+      <tr>
+        <td><%= link_to venue.name, edit_venue_path(venue) %></td>
+        <td><%= venue.thumbs_up %></td>
+        <td><%= venue.extinct_on %></td>
+        <td><%= venue.accepts_tiw %></td>
+        <td><%= venue.accepts_reservations %></td>
+        <td><%= venue.location_details %></td>
+        <td><%= venue.operator_id %></td>
+        <td><%= venue.operator_type %></td>
+        <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Venue', new_venue_path %>

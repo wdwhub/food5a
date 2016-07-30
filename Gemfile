@@ -75,3 +75,6 @@ gem 'mechanize', '~> 2.7', '>= 2.7.4'
 #admin
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
+
+# fuzzy search
+gem 'fuzzy_match', '~> 2.1' # best match strings
