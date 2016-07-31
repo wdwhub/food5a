@@ -71,6 +71,7 @@ gem 'turbolinks', '~> 5.0'
 gem 'faraday', '~> 0.9.2' 
 gem 'faraday_middleware', '~> 0.10.0'
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
+gem 'foursquare2', '~> 2.0', '>= 2.0.2'
 
 #admin
 gem 'remotipart', github: 'mshibuya/remotipart'

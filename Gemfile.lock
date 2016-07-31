@@ -123,12 +123,17 @@ GEM
       activesupport
       capybara
       i18n
+    foursquare2 (2.0.2)
+      faraday (~> 0.8)
+      faraday_middleware (>= 0.8)
+      hashie (>= 1.0, < 4.0.0)
     fuzzy_match (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
     hashdiff (0.3.0)
+    hashie (3.4.4)
     high_voltage (3.0.0)
     honeybadger (2.6.0)
     http-cookie (1.0.2)
@@ -357,6 +362,7 @@ DEPENDENCIES
   faraday_middleware (~> 0.10.0)
   flutie
   formulaic
+  foursquare2 (~> 2.0, >= 2.0.2)
   fuzzy_match (~> 2.1)
   high_voltage
   honeybadger
