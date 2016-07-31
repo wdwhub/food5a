@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :touring_plans_venue do
+    
+  end
   factory :venue do
     sequence(:name) { |n| "venue name#{n}"}
     sequence(:permalink) { |n| "venue-permalink#{n}/"}

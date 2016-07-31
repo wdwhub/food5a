@@ -41,7 +41,8 @@ class TouringPlansParkSync
     list = list_park_venues(route: park_route_key)
     # list.collect { |venue| venue.name }
     list.each do |venue|
-      updated_venue = update_eatery_from_touringplans_com(route: park_route_key, representation: {name: venue.name, permalink: venue.permalink} )
+      updated_venue = update_eatery_from_touringplans_com(route: park_route_key, 
+                      representation: {name: venue.name, permalink: venue.permalink} )
       puts updated_venue
     end
   end

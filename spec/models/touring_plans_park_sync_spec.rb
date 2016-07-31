@@ -13,8 +13,18 @@ RSpec.describe TouringPlansParkSync, type: :model do
   describe '#update_a' do
     
   end
-  #
-  # describe '#attach_foursquare_review_to_hotel(hotel_name)' do
+
+  describe '#update_park_venues(park_route_key)' do
+    it 'works' do
+      #make multiple touringplans_venues
+      build_list(:remote_touring_plans_park_eatery_detail)
+      #make a specific touring plans venue
+      remote_tp_venue = create(:remote_touring_plans_park_eatery_detail, name: "The Fountain", permalink: "the-fountain")
+      park_route_key  = :epcot
+      venue           = remote_tp_venue
+      expect(subject.update_park_venues(park_route_key)).to eq("something")
+    end
+  end
   #
   #   # it 'works' do
   #   #   #make multiple hotels

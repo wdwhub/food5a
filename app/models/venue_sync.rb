@@ -92,8 +92,6 @@ class VenueSync
     "normal"                                => DEFAULT_CLASS,
     "french-quarter-pizza"                  => DfbVenueNoMatchFastener, #nothing at dfb matches
     "the-wave-restaurant"                   => DfbVenueMatchByPermalinkFastener,
-    "jiko-the-cooking-place"                => DfbVenueMatchByPermalinkFastener,
-    "boma-flavors-of-africa"                => DfbVenueMatchByPermalinkFastener,
     "fultons--general-store-market"         => DfbVenueMatchByPermalinkFastener,
     "the-screen-door-market"                => DfbVenueMatchByPermalinkFastener,
     "splash-terrace"                        => DfbVenueMatchByPermalinkFastener,
@@ -107,26 +105,58 @@ class VenueSync
     "settlement-trading-post-market"        => DfbVenueMatchByPermalinkFastener,
     "fittings-farings-market"               => DfbVenueMatchByPermalinkFastener,
     "fittings-farings-market"               => DfbVenueMatchByPermalinkFastener,
-    "fresh-mediterranean-market"             => DfbVenueMatchByPermalinkFastener,
-    
+    "fresh-mediterranean-market"            => DfbVenueMatchByPermalinkFastener,
+    "boma-flavors-of-africa"                => DfbVenueMatchByPermalinkFastener,
+    "boatwrights"                           => DfbVenueMatchByPermalinkFastener,
+
     "oasis-stroller"                        => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "panchitos-gifts-sundries-market"       => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "sport-goofy-gifts-sundries-market"     => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "wilderness-lodge-mercantile-market"    => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "surray-bike-rentals-beverages"         => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "polynesian-private-dining"             => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "fantasmic-food"                        => DfbVenueNoMatchFastener, #nothing at dfb matches
     "big-top-treats"                        => DfbVenueNoMatchFastener, #nothing at dfb matches
     "woodys-round-up"                       => DfbVenueNoMatchFastener, #nothing at dfb matches
     "the-screen-door-market"                => DfbVenueNoMatchFastener, #nothing at dfb matches
     "settlement-trading-post-market"        => DfbVenueNoMatchFastener, #nothing at dfb matches
     "moana-mercantile"                      => DfbVenueNoMatchFastener, #nothing at dfb matches
     "private-dining-room-service"           => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "coronado-springs-private-dining"       => DfbVenueNoMatchFastener, #nothing at dfb matches
     "fultons--general-store-market"         => DfbVenueNoMatchFastener, #nothing at dfb matches
     "saratoga-springs-private-dining"       => DfbVenueNoMatchFastener, #nothing at dfb matches
     "fittings-farings-market"               => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "johari-treasures"                      => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "wild-snacks"                           => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "lobby-lounge"                          => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "oasis"                                 => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "club-cool"                             => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "Club-Disney"                           => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "Grand-FL-Gingerbread-House"            => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "jackson-square-market"                 => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "krnr-rock-station"                     => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "conch-flats-general-store-market"      => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "crush-hot-dog-cart"                    => DfbVenueNoMatchFastener, #nothing at dfb matches
     "refreshment-outpost-coolpost"          => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
-    "boma-flavors-of-africa"                => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
     "chuck-wagon"                           => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
-    "splash-terrace"                        => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
-
-
-    "abracadabar"                           => DfbVenueNoMatchFastener, #extinct
-    "french-quarter-pizza"                  => DfbVenueMatchByPermalinkFastener
+    "abracadabar"                           => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "the-main-street-confectionary"         => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "jiko-the-cooking-place"                => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "boma-flavors-of-africa"                => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "funnel-cake-kiosk-boardwalk"           => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "java-bar"                              => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "crepes-des-chefs-de-france"            => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "sweet-spells"                          => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "hollywood-and-vine"                    => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "oasis-canteen"                         => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "tortuga-tavern"                        => DfbVenueNoMatchFastener, #exists, but unindexed by dfb
+    "herbies-drive-in"                      => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "hollywood-scoops"                      => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "sandycove-market"                      => DfbVenueNoMatchFastener, #nothing at dfb matches
+    
+    
+    "splash-terrace"                        => DfbVenueNoMatchFastener #exists, but unindexed by dfb
+    
   }
   
 end

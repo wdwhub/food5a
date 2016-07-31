@@ -29,10 +29,17 @@ class DfbVenueMatchByPermalinkFastener
     # key: venue, value: dfb_eatery
     {"the-wave-restaurant"            => "http://www.disneyfoodblog.com/the-wave/",
       "fresh-mediterranean-market"    => "http://www.disneyfoodblog.com/fresh-mediterranean-market/",
+      # "crepes-des-chefs-de-france"    => "http://www.disneyfoodblog.com/crepes-de-chefs-de-france/",
+      # "funnel-cake-kiosk-boardwalk"   => "http://www.disneyfoodblog.com/funnel-cake-kiosk/",
+      # "chuck-wagon"                   => "http://www.disneyfoodblog.com/chuck-wagon", #uninidexed by dfb
+      # "boma-flavors-of-africa"        => "http://www.disneyfoodblog.com/boma", #uninidexed by dfb
+      # "boatwrights"                   => "www.disneyfoodblog.com/boatwrights/", #uninidexed by dfb
+      # "hollywood-and-vine"            => "www.disneyfoodblog.com/hollywood-and-vine-restaurant/",
+      # "java-bar"                      => "www.disneyfoodblog.com/java-bar",
+      # "sweet-spells"                  => "www.disneyfoodblog.com/sweet-spells",
+      # "the-main-street-confectionary" => "www.disneyfoodblog.com/main-street-confectionery/",
+      # "abracadabar"                   => "www.disneyfoodblog.com/abracadabar/",
       "jiko-the-cooking-place"        => "http://www.disneyfoodblog.com/jiko/"
-      # "chuck-wagon"        => "http://www.disneyfoodblog.com/chuck-wagon" uninidexed by dfb
-      # "boma-flavors-of-africa"        => "http://www.disneyfoodblog.com/boma" uninidexed by dfb
-      # "boatwrights"        => "www.disneyfoodblog.com/boatwrights/" uninidexed by dfb
     }
   end
 end

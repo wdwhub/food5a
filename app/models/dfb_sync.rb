@@ -10,9 +10,6 @@ class DfbSync
     "touring plans park sync"
   end
 
-  def update_all_venues
-  end
-
   def update_venues#(park_route_key)
     list = DfbVenueFactory::Venue.new.create_summary_dfb_venues
     list.each do |venue|
