@@ -1,0 +1,2 @@
+class TouringPlansVenue < Representation
+end
