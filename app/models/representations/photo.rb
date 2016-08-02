@@ -1,0 +1,3 @@
+class Photo < Representation
+  
+end

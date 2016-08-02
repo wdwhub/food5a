@@ -9,7 +9,7 @@ class Foursquare2Client
   DEFAULT_FOURSQUARE_SECRET = FOURSQUARE_SECRET
   DEFAULT_VENUE_ID          = ""
 
-  attr_reader :client_id, :client_secret, :ll, :api_version, :radius, :ll
+  attr_reader :client_id, :client_secret, :ll, :api_version, :radius
 
   def initialize(api_version: DEFAULT_API_VERSION, 
     query:          DEFAULT_QUERY, 
@@ -35,7 +35,7 @@ class Foursquare2Client
   def client
     client = Foursquare2::Client.new(:client_id => client_id, 
       :client_secret => client_secret, 
-      :api_version => self.api_version, 
-      :ll => self.ll)    
+      :api_version => api_version, 
+      :ll => ll)    
   end
 end

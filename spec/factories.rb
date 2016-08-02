@@ -1,4 +1,29 @@
 FactoryGirl.define do
+  factory :foursquare_eatery do
+    name "MyString"
+    venue_id "MyString"
+    address "MyString"
+    cross_street "MyString"
+    lat "MyString"
+    lng "MyString"
+    alt_venues "MyString"
+    searched_for "MyString"
+    archived_at "2016-07-31 10:03:24"
+    categories "MyText"
+    referral_id "MyString"
+    location "MyText"
+    canonical_url "MyText"
+    verified false
+    dislike false
+    ok false
+    rating "9.99"
+    rating_color "MyString"
+    rating_signals "MyString"
+    allow_menu_url_edit false
+    specials "MyString"
+    wdw_uri "MyText"
+    venue nil
+  end
   factory :venue do
     sequence(:name) { |n| "venue name#{n}"}
     sequence(:permalink) { |n| "venue-permalink#{n}/"}

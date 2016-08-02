@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727033449) do
+ActiveRecord::Schema.define(version: 20160731170324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,35 @@ ActiveRecord::Schema.define(version: 20160727033449) do
     t.string   "wdw_uri"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "foursquare_eateries", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "venue_id"
+    t.string   "address"
+    t.string   "cross_street"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "alt_venues"
+    t.string   "searched_for"
+    t.datetime "archived_at"
+    t.text     "categories"
+    t.string   "referral_id"
+    t.text     "location"
+    t.text     "canonical_url"
+    t.boolean  "verified"
+    t.boolean  "dislike"
+    t.boolean  "ok"
+    t.decimal  "rating",              precision: 10, scale: 2
+    t.decimal  "decimal",             precision: 10, scale: 2
+    t.string   "rating_color"
+    t.string   "rating_signals"
+    t.boolean  "allow_menu_url_edit"
+    t.string   "specials"
+    t.text     "wdw_uri"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.index ["venue_id"], name: "index_foursquare_eateries_on_venue_id", using: :btree
   end
 
   create_table "touring_plans_eateries", force: :cascade do |t|
@@ -175,4 +204,5 @@ ActiveRecord::Schema.define(version: 20160727033449) do
 
   add_foreign_key "dfb_articles", "dfb_eateries"
   add_foreign_key "dfb_articles", "venues"
+  add_foreign_key "foursquare_eateries", "venues"
 end
