@@ -56,7 +56,7 @@ class FoursquareVenue
     venue["attributes"]                   = "not needed for wdwhub"
     venue["bestPhoto"]                    = [reformat_best_photo(venue["bestPhoto"])]
     result = venue
-    # response = Representation.new(result)
+    response = Representation.new(result)
     
   end
   
