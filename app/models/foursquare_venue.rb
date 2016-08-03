@@ -1,6 +1,6 @@
-require_relative "./representations/photo"
-require_relative "./representations/user"
-require_relative "./representations/source"
+# require_relative "./representations/photo"
+# require_relative "./representations/user"
+# require_relative "./representations/source"
 
 class FoursquareVenue
   
@@ -30,6 +30,8 @@ class FoursquareVenue
     
     venue["stats"]                        = [venue.fetch("stats", '')]
     venue["likes"]                        = [venue.fetch("likes", '')]
+    venue["price"]                        = [venue.fetch("price", '')]
+    venue["menu"]                        = [venue.fetch("menu", '')]
 
     venue["page"]["pageInfo"]["links"]    = "not needed for wdwhub"
     venue["page"]["pageInfo"]             = [venue.fetch("page").fetch("pageInfo")]
@@ -46,6 +48,7 @@ class FoursquareVenue
     venue["reasons"]                      = [venue["reasons"] ]
     venue["inbox"]                        = [venue["inbox"] ]
     venue["hierarchy"]                    = Array(venue["hierarchy"] )
+    venue["tags"]                         = "not needed for wdwhub" #reformat_tips(venue)
     venue["tips"]                         = "not needed for wdwhub" #reformat_tips(venue)
     venue["listed"]                       = "not needed for wdwhub"
     venue["popular"]                      = "complex, come back later"
@@ -53,7 +56,7 @@ class FoursquareVenue
     venue["attributes"]                   = "not needed for wdwhub"
     venue["bestPhoto"]                    = [reformat_best_photo(venue["bestPhoto"])]
     result = venue
-    response = Representation.new(venue)
+    # response = Representation.new(result)
     
   end
   
