@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :foursquare_photo do
+    
+  end
+  factory :foursquare_missing_venue do
+    
+  end
   factory :foursquare_eatery do
     name "MyString"
     venue_id "MyString"

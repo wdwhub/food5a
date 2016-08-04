@@ -87,6 +87,20 @@ class VenueSync
     end
   end
 
+  def attach_foursquare_eatery_to_venue(venue_id)
+    permalink = Venue.find(venue_id).permalink
+    fastener =     (SPECIALIZED_CLASSES[permalink] || DEFAULT_FOURSQUARE_CLASS ).new
+    attachment = VenueFastener.new(venue_id: venue_id, fastener: fastener).fuse_with_resource
+  end
+  
+  def attach_all_foursquare_eateries
+    all_venue_ids.each do |venue_id|
+      attach_dfb_eatery_to_venue(venue_id)
+    end
+  end
+
+  DEFAULT_FOURSQUARE_CLASS = FoursquareDefaultVenueFastener  
+  
   DEFAULT_CLASS = DfbDefaultVenueFastener
   SPECIALIZED_CLASSES = {
     "normal"                                => DEFAULT_CLASS,
