@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803154844) do
+ActiveRecord::Schema.define(version: 20160805023315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cached_photos", force: :cascade do |t|
+    t.integer  "height"
+    t.integer  "created_at_by_epoch"
+    t.integer  "width"
+    t.integer  "foursquare_venue_id"
+    t.string   "prefix"
+    t.string   "suffix"
+    t.string   "fousquare_user"
+    t.string   "visibility"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "foursquare_photo_id"
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -97,6 +111,20 @@ ActiveRecord::Schema.define(version: 20160803154844) do
     t.datetime "updated_at",                                   null: false
     t.string   "foursquare_id"
     t.index ["venue_id"], name: "index_foursquare_eateries_on_venue_id", using: :btree
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer  "height"
+    t.integer  "created_at_by_epoch"
+    t.integer  "width"
+    t.integer  "foursquare_venue_id"
+    t.string   "prefix"
+    t.string   "suffix"
+    t.string   "fousquare_user"
+    t.string   "visibility"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "foursquare_photo_id"
   end
 
   create_table "touring_plans_eateries", force: :cascade do |t|

@@ -1,10 +1,12 @@
-require_relative "./representations/photo"
+require_relative "./representations/image"
 
 class FoursquarePhoto
-  attr_reader :client, :fsq_default
-  def initialize(foursquare_api: Foursquare2Client.new)
-    @fsq_default  = foursquare_api
-    @client       = foursquare_api.client
+  attr_reader :client, :fsq_default_settings, :fsq_venue_default
+  
+  def initialize(foursquare_api: Foursquare2Client.new, fsq_venue_default: FoursquareMissingVenue.new)
+    @fsq_default_settings   = foursquare_api
+    @fsq_venue_default      = fsq_venue_default
+    @client                 = foursquare_api.client
   end
 
   def title
@@ -13,9 +15,10 @@ class FoursquarePhoto
   
   def venue_photos(venue_id)
     response = client.venue_photos(venue_id)
-    response["photos"] = response.delete("items")
-    response["photos"].each { |item|  item["source"] = _reformat_source(item["source"])}
-    response["photos"].each { |item|  item["user"] = _reformat_user(item["user"])}
+    response["images"] = response.fetch("items", [])
+    response.delete("items") if response.fetch("items").length > 0
+    response["images"].each { |item|  item["source"] = _reformat_source(item["source"])}
+    response["images"].each { |item|  item["user"] = _reformat_user(item["user"])}
     
     # puts "==============="
     # puts response

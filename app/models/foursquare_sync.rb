@@ -1,6 +1,6 @@
 class FoursquareSync
-  def initialize# (args)
-    
+  def initialize (fsq_eatery_default: FoursquareMissingVenue.new)
+    @fsq_eatery_default  = fsq_eatery_default
   end
   
   def title
@@ -9,6 +9,10 @@ class FoursquareSync
   
   def collect_all_wdw_venue_names
     names_collection = Venue.all.collect { |venue| venue.name }
+  end
+  
+  def collect_all_foursquare_venue_ids
+    FoursquareEatery.all.collect { |venue| venue.foursquare_id }
   end
   
   def update_all_foursquare_eateries
@@ -58,5 +62,28 @@ class FoursquareSync
   
   def foursquare_venue_representation(venue_id)
     FoursquareVenue.new.venue(venue_id)
+  end
+  
+  def create_or_update_cached_photos(venue_id:)
+    fsq_photos = FoursquarePhoto.new.venue_photos(venue_id)
+    fsq_photos.images.each do |image|
+      cached_photo             = CachedPhoto.where(foursquare_photo_id: image.id).first_or_create
+      
+      cached_photo.update(height:      image.height         || fsq_eatery_default.height,
+      created_at_by_epoch:      image.createdAt             || fsq_eatery_default.created_at_by_epoch,
+      width:                    image.width                 || fsq_eatery_default.width,
+      foursquare_venue_id:      venue_id                    || fsq_eatery_default.venue_id,
+      prefix:                   image.prefix                || fsq_eatery_default.prefix,
+      suffix:                   image.suffix                || fsq_eatery_default.suffix,
+      fousquare_user:           image.fousquare_user.to_s   || fsq_eatery_default.fousquare_user,
+      visibility:               image.visibility            || fsq_eatery_default.visibility
+      )
+    end
+    
+  end
+  
+  def update_photos_for_all_venues
+    list = collect_all_foursquare_venue_ids
+    list.each { |venue_id| create_or_update_cached_photos(venue_id: venue_id.to_s)}
   end
 end

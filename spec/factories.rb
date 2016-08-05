@@ -1,4 +1,24 @@
 FactoryGirl.define do
+  factory :cached_photo do
+    height 1
+    created_at_by_epoch 1
+    width 1
+    foursquare_venue_id 1
+    prefix "MyString"
+    suffix "MyString"
+    fousquare_user "MyString"
+    visibility "MyString"
+  end
+  factory :photo do
+    height 1
+    created_at_by_epoch 1
+    width 1
+    foursquare_venue_id 1
+    prefix "MyString"
+    suffix "MyString"
+    fousquare_user "MyString"
+    visibility "MyString"
+  end
   factory :foursquare_photo do
     
   end
