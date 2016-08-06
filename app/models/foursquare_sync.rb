@@ -94,15 +94,17 @@ class FoursquareSync
       puts "===="
       cached_tip             = CachedTip.where(foursquare_tip_id: tip.id).first_or_create
       
-      cached_tip.update(foursquare_tip_id:  tip.foursquare_tip_id   || fsq_eatery_default.foursquare_tip_id,
-      text:                         tip.text                        || fsq_eatery_default.text,
-      type:                         tip.type                        || fsq_eatery_default.type,
-      # foursquare_venue_id:          venue_id                        || fsq_eatery_default.venue_id,
-      canonical_url:                tip.canonical_url               || fsq_eatery_default.canonical_url,
-      lang:                         tip.lang                        || fsq_eatery_default.lang,
-      foursquare_user_id:           tip.foursquare_user_id          || fsq_eatery_default.foursquare_user_id,
-      foursquare_user_first_name:   tip.foursquare_user_first_name  || \
-          fsq_eatery_default.foursquare_user_first_name
+      cached_tip.update(foursquare_tip_id:  tip.id   || fsq_eatery_default.foursquare_tip_id,
+      text:                           tip.text                        || fsq_eatery_default.text,
+      kind:                           tip.type                        || fsq_eatery_default.type,
+      foursquare_venue_id:            venue_id                        || fsq_eatery_default.venue_id,
+      canonical_url:                  tip.canonical_url               || fsq_eatery_default.canonical_url,
+      lang:                           tip.lang                        || fsq_eatery_default.lang,
+      foursquare_user_photo_prefix:   tip.user.first.photo_prefix          || fsq_eatery_default.user_photo_prefix,
+      foursquare_user_photo_suffix:   tip.user.first.photo_suffix          || fsq_eatery_default.user_photo_suffix,
+      foursquare_user_id:             tip.user.first.id          || fsq_eatery_default.foursquare_user_id,
+      foursquare_user_first_name:     tip.user.first.first_name  || fsq_eatery_default.foursquare_user_first_name,
+      foursquare_last_name:           tip.user.first.last_name  || fsq_eatery_default.foursquare_user_last_name
       )
       # t.string   "foursquare_tip_id"
       # t.text     "text"

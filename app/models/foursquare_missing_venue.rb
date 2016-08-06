@@ -102,4 +102,16 @@ class FoursquareMissingVenue
   def foursquare_user_first_name
     ""
   end
+  
+  def user_photo_prefix
+    '"https://irs2.4sqi.net/img/user/"'
+  end
+  
+  def user_photo_suffix
+    ""
+  end
+  
+  def venue_id
+    ""
+  end
 end

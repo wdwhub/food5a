@@ -1,5 +1,5 @@
 require_relative "./representations/tip"
-require_relative "./representations/user"
+# require_relative "./representations/user"
 
 class FoursquareTip
   attr_reader :client, :fsq_default_settings, :fsq_venue_default
@@ -30,8 +30,12 @@ class FoursquareTip
       response["tips"] << {
         "id"            => tip.fetch("id", ""),
         "text"          => tip.fetch("text", ""),
-        "text"          => tip.fetch("text", ""),
         "agreeCount"    => tip.fetch("agreeCount", ""),
+        "disagreeCount"    => tip.fetch("disagreeCount", ""),
+        "type"    => tip.fetch("type", ""),
+        "created_at_boolean"    => tip.fetch("createdAt", ""),
+        "canonical_url"    => tip.fetch("canonicalUrl", ""),
+        
         "user"          => tip.fetch("user", "")
       }
     end

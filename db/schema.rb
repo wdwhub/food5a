@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805210147) do
+ActiveRecord::Schema.define(version: 20160806145008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160805210147) do
   create_table "cached_tips", force: :cascade do |t|
     t.string   "foursquare_tip_id"
     t.text     "text"
-    t.string   "type"
+    t.string   "kind"
     t.string   "canonical_url"
     t.string   "lang"
     t.string   "likes_count"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160805210147) do
     t.string   "foursquare_user_photo_suffix"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "foursquare_venue_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
