@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805023315) do
+ActiveRecord::Schema.define(version: 20160805210147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,25 @@ ActiveRecord::Schema.define(version: 20160805023315) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "foursquare_photo_id"
+  end
+
+  create_table "cached_tips", force: :cascade do |t|
+    t.string   "foursquare_tip_id"
+    t.text     "text"
+    t.string   "type"
+    t.string   "canonical_url"
+    t.string   "lang"
+    t.string   "likes_count"
+    t.string   "log_view"
+    t.string   "agree_count"
+    t.integer  "foursquare_user_id"
+    t.string   "foursquare_user_first_name"
+    t.string   "foursquare_last_name"
+    t.string   "foursquare_user_gender"
+    t.string   "foursquare_user_photo_prefix"
+    t.string   "foursquare_user_photo_suffix"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

@@ -9,7 +9,7 @@ RSpec.describe FoursquareSync, type: :model do
     end
   end
   
-  describe '#collect_all_wdw_venue_names' do
+  describe '#collect_all_wdw_venue_names_and_ids' do
     
     before do
       create_list(:venue, 25)
@@ -19,19 +19,19 @@ RSpec.describe FoursquareSync, type: :model do
     #   expect(subject.list_all_wdw_venue_names).to eq("something")
     # end
     it 'is an Array' do
-      expect(subject.collect_all_wdw_venue_names).to be_an(Array)
+      expect(subject.collect_all_wdw_venue_names_and_ids).to be_an(Array)
     end
     
-    it 'has a String for its first element' do
-      expect(subject.collect_all_wdw_venue_names.first).to be_a(String)
+    it 'has a Hash for its first element' do
+      expect(subject.collect_all_wdw_venue_names_and_ids.first).to be_a(Hash)
     end
     
     it 'has between 10 and 20 elements' do
-      expect(subject.collect_all_wdw_venue_names.length).to be_within(10).of(20)
+      expect(subject.collect_all_wdw_venue_names_and_ids.length).to be_within(10).of(20)
     end
   end
 
-  describe '#create_or_update_foursquare_eatery(venue_name: venue_name)' do
+  describe '#create_or_update_foursquare_eatery(venue_name: venue_name, venue_id: venue_id)' do
     let(:venue_name) { "Aloha Isle Refreshments" }
     let(:fsq_aloha_isle) { File.read( Rails.root + 'spec/support/shared_examples/foursquare_aloha_isle.json' ) }
     let(:fsq_aloha_isle_search) { File.read( Rails.root + 'spec/support/shared_examples/foursquare_aloha_isle_search.json' ) }
@@ -50,7 +50,8 @@ RSpec.describe FoursquareSync, type: :model do
     end
 
     it 'works' do
-      expect(subject.create_or_update_foursquare_eatery(venue_name: venue_name)).to eq("something")
+      # venue               = create(:venue, name: "Aloha Isle Refreshments")
+      expect(subject.create_or_update_foursquare_eatery(venue_name: venue_name, venue_id: venue.id)).to eq("something")
     end
   end
 
@@ -64,8 +65,28 @@ RSpec.describe FoursquareSync, type: :model do
         to_return(:status => 200, :body => aloha_isle_photos, :headers => {})
       
     end
-    it 'works' do
-      expect(subject.create_or_update_cached_photos(venue_id: venue_id)).to eq("something")
+    # it 'works' do
+    #   expect(subject.create_or_update_cached_photos(venue_id: venue_id)).to eq("something")
+    # end
+
+    it 'returns an image object' do
+      expect(subject.create_or_update_cached_photos(venue_id: venue_id).first).to be_an(Image)
+    end
+
+    it 'returns an image width > 100' do
+      expect(subject.create_or_update_cached_photos(venue_id: venue_id).first.width).to be > 100
+    end
+
+    it 'returns an image height > 100' do
+      expect(subject.create_or_update_cached_photos(venue_id: venue_id).first.height).to be > 100
+    end
+
+    it 'returns an image prefix starting with "httpas"' do
+      expect(subject.create_or_update_cached_photos(venue_id: venue_id).first.prefix).to start_with "http"
+    end
+
+    it 'returns an image suffix ending with "jpg"' do
+      expect(subject.create_or_update_cached_photos(venue_id: venue_id).first.suffix).to end_with "jpg"
     end
 
   end

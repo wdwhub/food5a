@@ -1,4 +1,38 @@
 FactoryGirl.define do
+  factory :cached_tip do
+    foursquare_tip_id "MyString"
+    text "MyText"
+    type ""
+    canonical_url "MyString"
+    lang "MyString"
+    likes_count "MyString"
+    log_view "MyString"
+    agree_count "MyString"
+    foursquare_user_id 1
+    foursquare_user_first_name "MyString"
+    foursquare_last_name "MyString"
+    foursquare_user_gender "MyString"
+    foursquare_user_photo_prefix "MyString"
+    foursquare_user_photo_prefix "MyString"
+    foursquare_user_photo_suffix "MyString"
+  end
+  factory :foursquare_tip do
+    foursquare_tip_id "MyString"
+    text "MyText"
+    type ""
+    canonical_url "MyString"
+    lang "MyString"
+    likes_count "MyString"
+    log_view "MyString"
+    agree_count "MyString"
+    foursquare_user_id 1
+    foursquare_user_first_name "MyString"
+    foursquare_last_name "MyString"
+    foursquare_user_gender "MyString"
+    foursquare_user_photo_prefix "MyString"
+    foursquare_user_photo_prefix "MyString"
+    foursquare_user_photo_suffix "MyString"
+  end
   factory :cached_photo do
     height 1
     created_at_by_epoch 1

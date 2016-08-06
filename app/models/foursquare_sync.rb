@@ -1,4 +1,6 @@
 class FoursquareSync
+  attr_reader :fsq_eatery_default
+  
   def initialize (fsq_eatery_default: FoursquareMissingVenue.new)
     @fsq_eatery_default  = fsq_eatery_default
   end
@@ -7,8 +9,8 @@ class FoursquareSync
     "foursquare sync"
   end
   
-  def collect_all_wdw_venue_names
-    names_collection = Venue.all.collect { |venue| venue.name }
+  def collect_all_wdw_venue_names_and_ids
+    collection = Venue.all.collect { |venue| {venue_name:venue.name, venue_id:venue.id} }
   end
   
   def collect_all_foursquare_venue_ids
@@ -16,10 +18,12 @@ class FoursquareSync
   end
   
   def update_all_foursquare_eateries
-    list = collect_all_wdw_venue_names
-    list.each { |name| create_or_update_foursquare_eatery(venue_name: name.to_s ) }
+    list = collect_all_wdw_venue_names_and_ids
+    list.each { |venue| create_or_update_foursquare_eatery(venue_name: venue[:venue_name], venue_id: venue[:venue_id] ) }
   end
-  def create_or_update_foursquare_eatery(venue_name: )
+  def create_or_update_foursquare_eatery(venue_name: , venue_id:)
+    puts     "venue_name: #{venue_name}, venue_id: #{venue_id}"
+    
     fsq_eatery_default  = FoursquareMissingVenue.new
     found_remote_fsq_venue    = find_remote_venue(venue_name) || fsq_eatery_default
     return if found_remote_fsq_venue == fsq_eatery_default
@@ -30,20 +34,21 @@ class FoursquareSync
     fsq_eatery             = FoursquareEatery.where(foursquare_id: remote_fsq_venue.id).first_or_create
 
     fsq_eatery.update(name:   remote_fsq_venue.name                     || fsq_eatery_default.name,
-       address:               remote_fsq_venue.location.first.address             || fsq_eatery_default.address,
-       lat:                   remote_fsq_venue.location.first.lat                 || fsq_eatery_default.lat,
-       lng:                   remote_fsq_venue.location.first.lng                 || fsq_eatery_default.lng,
+       address:               remote_fsq_venue.location.first.address   || fsq_eatery_default.address,
+       lat:                   remote_fsq_venue.location.first.lat       || fsq_eatery_default.lat,
+       lng:                   remote_fsq_venue.location.first.lng       || fsq_eatery_default.lng,
        wdw_uri:               remote_fsq_venue.url                      || fsq_eatery_default.wdw_uri,
        archived_at:           Time.now,
        canonical_url:         remote_fsq_venue.canonicalUrl             || fsq_eatery_default.canonical_url,
        verified:              remote_fsq_venue.verified                 || fsq_eatery_default.verified,
        # dislike:              remote_fsq_venue.dislike                 || fsq_eatery_default.dislike,
        # ok:              remote_fsq_venue.ok                 || fsq_eatery_default.ok,
-       rating:              remote_fsq_venue.rating                 || fsq_eatery_default.rating,
+       rating:                remote_fsq_venue.rating                     || fsq_eatery_default.rating,
        # rating_color:              remote_fsq_venue.rating_color                 || fsq_eatery_default.rating_color,
        # rating_signals:              remote_fsq_venue.rating_signals                 || fsq_eatery_default.rating_signals,
        # specials:              remote_fsq_venue.specials.first.to_s                 || fsq_eatery_default.specials,
-       foursquare_id:              remote_fsq_venue.id.to_s                 || fsq_eatery_default.foursquare_id
+       foursquare_id:         remote_fsq_venue.id.to_s                  || fsq_eatery_default.foursquare_id,
+       venue_id:              venue_id                                  || fsq_eatery_default.venue_id
        
      )
      puts "==== sync #{fsq_eatery.foursquare_id} ==="
@@ -81,9 +86,51 @@ class FoursquareSync
     end
     
   end
+
+  def create_or_update_cached_tips(venue_id:)
+    fsq_tips = FoursquareTip.new.venue_tips(venue_id)
+    fsq_tips.tips.each do |tip|
+      tip
+      puts "===="
+      cached_tip             = CachedTip.where(foursquare_tip_id: tip.id).first_or_create
+      
+      cached_tip.update(foursquare_tip_id:  tip.foursquare_tip_id   || fsq_eatery_default.foursquare_tip_id,
+      text:                         tip.text                        || fsq_eatery_default.text,
+      type:                         tip.type                        || fsq_eatery_default.type,
+      # foursquare_venue_id:          venue_id                        || fsq_eatery_default.venue_id,
+      canonical_url:                tip.canonical_url               || fsq_eatery_default.canonical_url,
+      lang:                         tip.lang                        || fsq_eatery_default.lang,
+      foursquare_user_id:           tip.foursquare_user_id          || fsq_eatery_default.foursquare_user_id,
+      foursquare_user_first_name:   tip.foursquare_user_first_name  || \
+          fsq_eatery_default.foursquare_user_first_name
+      )
+      # t.string   "foursquare_tip_id"
+      # t.text     "text"
+      # t.string   "type"
+      # t.string   "canonical_url"
+      # t.string   "lang"
+      # t.string   "likes_count"
+      # t.string   "log_view"
+      # t.string   "agree_count"
+      # t.integer  "foursquare_user_id"
+      # t.string   "foursquare_user_first_name"
+      # t.string   "foursquare_last_name"
+      # t.string   "foursquare_user_gender"
+      # t.string   "foursquare_user_photo_prefix"
+      # t.string   "foursquare_user_photo_suffix"
+      
+    end
+    
+  end
   
   def update_photos_for_all_venues
     list = collect_all_foursquare_venue_ids
     list.each { |venue_id| create_or_update_cached_photos(venue_id: venue_id.to_s)}
   end
+
+  def update_tips_for_all_venues
+    list = collect_all_foursquare_venue_ids
+    list.each { |venue_id| create_or_update_cached_tips(venue_id: venue_id.to_s)}
+  end
+
 end

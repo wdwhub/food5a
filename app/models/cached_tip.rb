@@ -1,0 +1,2 @@
+class CachedTip < ApplicationRecord
+end

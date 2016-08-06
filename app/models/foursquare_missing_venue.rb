@@ -70,4 +70,36 @@ class FoursquareMissingVenue
   def wdw_uri
     ""
   end
+  
+  def venue_id
+    nil
+  end
+  
+  def foursquare_tip_id
+    ""
+  end
+  
+  def text
+    ""
+  end
+  
+  def type
+    ""
+  end
+  
+  def canonical_url
+    "https://foursquare.com"
+  end
+  
+  def lang
+    "en"
+  end
+  
+  def foursquare_user_id
+    ""
+  end
+  
+  def foursquare_user_first_name
+    ""
+  end
 end
