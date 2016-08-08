@@ -1,0 +1,30 @@
+$mobile: new-breakpoint(max-width 500px 4);
+
+section {
+    @include outer-container;
+    
+}
+.photos-and-tips {
+    @include span-columns(8);
+    @include media($mobile) {
+      @include span-columns(3);
+    }
+/*    @include media($mobile) {
+      @include span-columns(3);
+    }
+*/    
+}
+.sidebar {
+    @include span-columns(4);
+    @include media($mobile) {
+      @include span-columns(3);
+    }
+}
+
+.gallery {
+    @include outer-container;
+}
+li.block {
+  @include span-columns(3);
+  @include omega(4n);
+}

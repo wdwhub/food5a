@@ -1,0 +1,13 @@
+
+#content {
+    @include outer-container;
+ 
+    article {
+       @include two-thirds-nom;
+    }
+    aside {
+       @include one-third-nom;
+       @include omega;
+    }
+}
+.gallery .item { @include one-quarter; }

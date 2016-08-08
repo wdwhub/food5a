@@ -1,0 +1,18 @@
+$column: 90px;
+$gutter: 10px;
+$grid-columns: 12;
+$max-width: 1100px;
+
+// Breakpoints in Pixels
+$first-breakpoint-value: 400;
+$second-breakpoint-value: 835;
+$third-breakpoint-value: 1100;
+
+// Covers 0-399px wide screen size. 2 column grid
+$small-screen: new-breakpoint(max-width em($first-breakpoint-value — 1) 2);
+// Covers 400-835px wide screen size. 4 column grid
+$medium-screen: new-breakpoint(min-width em($first-breakpoint-value) max-width em($second-breakpoint-value) 4);
+// Covers 836-1099px wide screen size. 8 column grid
+$large-screen: new-breakpoint(min-width em($second-breakpoint-value + 1) max-width em($third-breakpoint-value — 1) 8);
+// Covers 1100px and up wide screen size. 12 column grid (default grid size)
+$xl-screen: new-breakpoint(min-width em($third-breakpoint-value));
