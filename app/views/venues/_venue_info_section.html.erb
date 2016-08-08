@@ -28,10 +28,10 @@
             itemscope="" 
             itemtype="http://schema.org/AggregateRating">
             <span class="venueScore positive" 
-                title="<%#= venue.foursquare_review_by_venue_id.rating.to_f %>/10" 
-                style="background-color: #<#%= venue.foursquare_review_by_venue_id.rating_color %>;">
+                title="<%= @venue.foursquare_eatery.rating.to_f %>/10" 
+                style="background-color: #<%= @venue.foursquare_eatery.rating_color %>;">
                 <span itemprop="ratingValue">
-                    <%#= venue.foursquare_review_by_venue_id.rating.to_f %>
+                    <%= @venue.foursquare_eatery.rating.to_f %>
                 </span>
                 <sup>/<span itemprop="bestRating">10</span>
                 </sup>
