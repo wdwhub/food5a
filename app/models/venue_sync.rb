@@ -99,32 +99,19 @@ class VenueSync
     end
   end
 
-  DEFAULT_FOURSQUARE_CLASS = FoursquareDefaultVenueFastener  
+  # DEFAULT_FOURSQUARE_CLASS = FoursquareDefaultVenueFastener
   
   DEFAULT_CLASS = DfbDefaultVenueFastener
   SPECIALIZED_CLASSES = {
     "normal"                                => DEFAULT_CLASS,
     "french-quarter-pizza"                  => DfbVenueNoMatchFastener, #nothing at dfb matches
     "the-wave-restaurant"                   => DfbVenueMatchByPermalinkFastener,
-    "fultons--general-store-market"         => DfbVenueMatchByPermalinkFastener,
-    "the-screen-door-market"                => DfbVenueMatchByPermalinkFastener,
-    "splash-terrace"                        => DfbVenueMatchByPermalinkFastener,
-    "moana-mercantile"                      => DfbVenueMatchByPermalinkFastener,
-    "chuck-wagon"                           => DfbVenueMatchByPermalinkFastener,
-    "refreshment-outpost-coolpost"          => DfbVenueMatchByPermalinkFastener,
-    "fresh-mediterranean-market"            => DfbVenueMatchByPermalinkFastener,
-    "private-dining-room-service"           => DfbVenueMatchByPermalinkFastener,
-    "saratoga-springs-private-dining"       => DfbVenueMatchByPermalinkFastener,
-    "big-top-treats"                        => DfbVenueMatchByPermalinkFastener,
-    "settlement-trading-post-market"        => DfbVenueMatchByPermalinkFastener,
-    "fittings-farings-market"               => DfbVenueMatchByPermalinkFastener,
-    "fittings-farings-market"               => DfbVenueMatchByPermalinkFastener,
-    "fresh-mediterranean-market"            => DfbVenueMatchByPermalinkFastener,
-    "boma-flavors-of-africa"                => DfbVenueMatchByPermalinkFastener,
     "boatwrights"                           => DfbVenueMatchByPermalinkFastener,
 
     "oasis-stroller"                        => DfbVenueNoMatchFastener, #nothing at dfb matches
-    "panchitos-gifts-sundries-market"       => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "private-dining-room-service"           => DfbVenueNoMatchFastener, #nothing at dfb matches
+    "panchitos-gifts-sundries-market"       => DfbVenueNoMatchFastener, #nothing        
+    "fresh-mediterranean-market"            => DfbVenueNoMatchFastener, #nothing at dfb matches
     "sport-goofy-gifts-sundries-market"     => DfbVenueNoMatchFastener, #nothing at dfb matches
     "wilderness-lodge-mercantile-market"    => DfbVenueNoMatchFastener, #nothing at dfb matches
     "surray-bike-rentals-beverages"         => DfbVenueNoMatchFastener, #nothing at dfb matches
@@ -135,7 +122,6 @@ class VenueSync
     "the-screen-door-market"                => DfbVenueNoMatchFastener, #nothing at dfb matches
     "settlement-trading-post-market"        => DfbVenueNoMatchFastener, #nothing at dfb matches
     "moana-mercantile"                      => DfbVenueNoMatchFastener, #nothing at dfb matches
-    "private-dining-room-service"           => DfbVenueNoMatchFastener, #nothing at dfb matches
     "coronado-springs-private-dining"       => DfbVenueNoMatchFastener, #nothing at dfb matches
     "fultons--general-store-market"         => DfbVenueNoMatchFastener, #nothing at dfb matches
     "saratoga-springs-private-dining"       => DfbVenueNoMatchFastener, #nothing at dfb matches

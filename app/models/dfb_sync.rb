@@ -22,7 +22,6 @@ class DfbSync
   def update_eatery_from_disneyfoodblog_com(representation: {}, route: :wdw_dining_review)
     # return "rep is #{representation} and permalink is #{representation[:permalink]}"
     remote_dfb_venue = DfbVenueFactory.for(representation: representation).add_details(route: route)
- 
     dfb_eatery             = DfbEatery.where(permalink: remote_dfb_venue.permalink).first_or_create
     puts "==== #{dfb_eatery.permalink} ==="
     puts dfb_eatery.name

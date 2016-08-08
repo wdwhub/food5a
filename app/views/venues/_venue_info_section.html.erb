@@ -1,4 +1,3 @@
-<section>
 <div class="venueInfoSection">
     <div class="topVenueSection">
         <div class="mainIconWrapper hasCustomIcon">
@@ -7,7 +6,7 @@
         <div class="primaryInfo">
             <div class="venueNameSection">
                 <h1 class="venueName" itemprop="name">
-                    Disney's All-Star Music Resort
+                    <%= @venue.name %>
                 </h1>
             </div>
             <div class="categories">
@@ -15,29 +14,34 @@
             </div>
             <div class="locationInfo">
                 <span class="venueNeighborhood">Walt Disney World Resort</span>, 
-                <span class="venueCity">Lake Buena Vista</span>
+                <span class="venueCity"><%= @venue.dfb_eatery.first.location %></span>
             </div>
             <div class="bottomVenueSection"></div>
         </div>
     </div>
     <div class="sectionsBar">
         <div class="sectionInfo">
-            <!-- <span class="sectionInfoName">hotel.name</span> -->
+            <!-- <span class="sectionInfoName">venue.name</span> -->
         </div>
-        <div class="venueRateBlock" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-            <span class="venueScore positive" title="8.5/10" style="background-color: #73CF42;">
+        <div class="venueRateBlock" 
+            itemprop="aggregateRating" 
+            itemscope="" 
+            itemtype="http://schema.org/AggregateRating">
+            <span class="venueScore positive" 
+                title="<%#= venue.foursquare_review_by_venue_id.rating.to_f %>/10" 
+                style="background-color: #<#%= venue.foursquare_review_by_venue_id.rating_color %>;">
                 <span itemprop="ratingValue">
-                    8.5
+                    <%#= venue.foursquare_review_by_venue_id.rating.to_f %>
                 </span>
                 <sup>/<span itemprop="bestRating">10</span>
                 </sup>
             </span>
             <div class="numRatingsBlock">
                 <div class="numRatings" itemprop="ratingCount">
-            
+                    
                 </div>
                 <div class="numRatingsLabel">
-            
+                    
                 </div>
             </div>
             <div class="likeDislikeControls comboRatingButton">
@@ -49,5 +53,3 @@
     </div>
     <div id="sectionsBarPlaceholder" style="display: none;"></div>
 </div>
-
-</section>

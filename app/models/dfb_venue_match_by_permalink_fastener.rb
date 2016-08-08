@@ -14,9 +14,7 @@ class DfbVenueMatchByPermalinkFastener
     venue_permalink         = venue.permalink
     dfb_eatery              = DfbEatery.find_by(permalink: venue_to_dfb_eatery_hash[venue_permalink])
     # reset related dfb_articles to nil
-    venue.dfb_articles.each do |article|
-      article.update(venue_id: nil)
-    end
+    venue.dfb_articles.each { |article| article.update(venue_id: nil) } if venue.dfb_articles
     # set current dfb_articles to be a child of venue
     dfb_eatery.dfb_articles.each do |article|
       article.update(venue_id: venue.id)
