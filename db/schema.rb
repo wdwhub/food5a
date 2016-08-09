@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806145008) do
+ActiveRecord::Schema.define(version: 20160809012421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160806145008) do
     t.integer  "height"
     t.integer  "created_at_by_epoch"
     t.integer  "width"
-    t.integer  "foursquare_venue_id"
+    t.string   "foursquare_venue_id"
     t.string   "prefix"
     t.string   "suffix"
     t.string   "fousquare_user"

@@ -8,6 +8,9 @@ class VenuesController < ApplicationController
 
   # GET /venues/1
   def show
+    @venue    = Venue.find(params[:id])
+    @photos   = @venue.foursquare_eatery.find_cached_images
+    @tips     = @venue.foursquare_eatery.find_cached_tips
   end
 
   # GET /venues/new

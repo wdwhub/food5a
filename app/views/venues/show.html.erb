@@ -1,9 +1,9 @@
         <section class="gallery">
             <ul>
-                <% image_array = [*1..4] %>
-                <% image_array.each do |image| %>
+                <% @photos.first(4).each do |image| %>
+                    
                 <li class="block">
-                    <%= image_tag "http://lorempixel.com/400/200/sports/#{image}" %>
+                    <%= image_tag "#{image.prefix}400x200#{image.suffix}" %>
                 </li>
                     
                 <% end %>
@@ -22,14 +22,14 @@
 <section class="main-content">
     <div class="photos-and-tips">
         <div class="cards">
-                <% card_array = [*1..12] %>
-                <% card_array.each do |card| %>
+                <% @photos.first(10).each do |image| %>
+                
                   <div class="card">
                     <div class="card-image">
-                        <%= image_tag "http://lorempixel.com/400/200/sports/#{(card % 5)  +1}" %>
+                        <%= image_tag "#{image.prefix}400x200#{image.suffix}" %>
                     </div>
                     <div class="card-header">
-                      Card <%= card %>
+                      Card 
                     </div>
                     <div class="card-copy">
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
@@ -38,37 +38,11 @@
                     
                 <% end %>
 
-              <div class="card">
-                <div class="card-image">
-                    <%= image_tag "http://lorempixel.com/400/200/sports/#{rand(8)}" %>
-                    
-
-                </div>
-                <div class="card-header">
-                  Another Card
-                </div>
-                <div class="card-copy">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-image">
-                    <%= image_tag "http://lorempixel.com/400/200/sports/#{rand(3)}" %>
-                </div>
-                <div class="card-header">
-                  The Last Card
-                </div>
-                <div class="card-copy">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-              </div>
             </div>
             
         <div class="tips">
-            <%= render 'tip' %>
-
-            <%= render 'tip' %>
+            
+            <%= render partial: "tip", collection: @tips.first(10) %>
         </div>
        
     </div>
@@ -84,10 +58,6 @@
         <%= render 'when_to_pay' %>
 
         <%= render :partial => 'tables_in_wonderland' %>
-
-        <p><strong>aside</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        map here
-<%= render 'google_map' %>
 
     </div>
 </section>
