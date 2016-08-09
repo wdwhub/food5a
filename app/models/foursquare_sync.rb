@@ -72,6 +72,7 @@ class FoursquareSync
   def create_or_update_cached_photos(venue_id:)
     fsq_photos = FoursquarePhoto.new.venue_photos(venue_id)
     fsq_photos.images.each do |image|
+      puts "venue_id: #{venue_id}, cached_photo #{image.id}"
       cached_photo             = CachedPhoto.where(foursquare_photo_id: image.id).first_or_create
       
       cached_photo.update(height:      image.height         || fsq_eatery_default.height,

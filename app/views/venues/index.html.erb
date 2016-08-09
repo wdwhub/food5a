@@ -20,7 +20,7 @@
   <tbody>
     <% @venues.each do |venue| %>
       <tr>
-        <td><%= link_to venue.name, edit_venue_path(venue) %></td>
+        <td><%= link_to venue.name, venue_path(venue) %></td>
         <td><%= venue.thumbs_up %></td>
         <td><%= venue.extinct_on %></td>
         <td><%= venue.accepts_tiw %></td>
@@ -28,7 +28,6 @@
         <td><%= venue.location_details %></td>
         <td><%= venue.operator_id %></td>
         <td><%= venue.operator_type %></td>
-        <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +35,3 @@
 
 <br>
 
-<%= link_to 'New Venue', new_venue_path %>
