@@ -12,3 +12,5 @@
 /tags
 /tmp/*
 faraday.log
+.gitignore
+config/skylight.yml
