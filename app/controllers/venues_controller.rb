@@ -3,7 +3,7 @@ class VenuesController < ApplicationController
 
   # GET /venues
   def index
-    @venues = Venue.all
+    @venues = Venue.order(thumbs_up: :desc)
   end
 
   # GET /venues/1
