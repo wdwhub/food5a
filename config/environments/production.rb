@@ -27,7 +27,11 @@ Rails.application.configure do
   end
   config.active_record.dump_schema_after_migration = false
   config.middleware.use Rack::Deflater
-  config.static_cache_control = "public, max-age=31557600"
+  ## Deprecated and will be removed in Rails 5.1
+  # config.static_cache_control = "public, max-age=31557600"
+  # change for Rails 5.1
+  config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=31557600' }
+
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
 end
 Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
