@@ -21,6 +21,7 @@ class FoursquareSync
     list = collect_all_wdw_venue_names_and_ids
     list.each { |venue| create_or_update_foursquare_eatery(venue_name: venue[:venue_name], venue_id: venue[:venue_id] ) }
   end
+  
   def create_or_update_foursquare_eatery(venue_name: , venue_id:)
     puts     "venue_name: #{venue_name}, venue_id: #{venue_id}"
     
