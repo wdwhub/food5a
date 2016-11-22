@@ -76,14 +76,15 @@ class FoursquareSync
       puts "venue_id: #{venue_id}, cached_photo #{image.id}"
       cached_photo             = CachedPhoto.where(foursquare_photo_id: image.id).first_or_create
       
-      cached_photo.update(height:      image.height         || fsq_eatery_default.height,
-      created_at_by_epoch:      image.createdAt             || fsq_eatery_default.created_at_by_epoch,
-      width:                    image.width                 || fsq_eatery_default.width,
-      foursquare_venue_id:      venue_id                    || fsq_eatery_default.venue_id,
-      prefix:                   image.prefix                || fsq_eatery_default.prefix,
-      suffix:                   image.suffix                || fsq_eatery_default.suffix,
-      fousquare_user:           image.fousquare_user.to_s   || fsq_eatery_default.fousquare_user,
-      visibility:               image.visibility            || fsq_eatery_default.visibility
+      cached_photo.update(height:      image.height             || fsq_eatery_default.height,
+      created_at_by_epoch:      image.createdAt                 || fsq_eatery_default.created_at_by_epoch,
+      width:                    image.width                     || fsq_eatery_default.width,
+      foursquare_venue_id:      venue_id                        || fsq_eatery_default.venue_id,
+      prefix:                   image.prefix                    || fsq_eatery_default.prefix,
+      suffix:                   image.suffix                    || fsq_eatery_default.suffix,
+      fousquare_user:           image.user.first.firstName.to_s || fsq_eatery_default.foursquare_user_first_name,
+      user_icon:                image.user.first.photo          || fsq_eatery_default.foursquare_user_photo,
+      visibility:               image.visibility                || fsq_eatery_default.visibility
       )
     end
     

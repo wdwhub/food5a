@@ -14,3 +14,4 @@
 faraday.log
 .gitignore
 config/skylight.yml
+.ruby-gemset

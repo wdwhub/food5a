@@ -28,11 +28,13 @@
                     <div class="card-image">
                         <%= image_tag "#{image.prefix}600x600#{image.suffix}" %>
                     </div>
-                    <div class="card-header">
-                      Card 
+                    <div class="card-header" >
+
+                      <%= image_tag "#{image.user_icon}", size: "48x48" %> <%= "#{image.foursquare_user_name}" %>
                     </div>
                     <div class="card-copy">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+                    <!-- <%= image_tag "#{image.user_icon}", size: "48x48" %> <%= "#{image.foursquare_user_name}" %> -->
+                    
                     </div>
                   </div>
                     

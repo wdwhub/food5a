@@ -111,7 +111,15 @@ class FoursquareMissingVenue
     ""
   end
   
+  def foursquare_user_photo
+    ""
+  end
+  
   def venue_id
     ""
+  end
+  
+  def visibility
+    "public"
   end
 end

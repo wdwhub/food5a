@@ -35,11 +35,18 @@ class FoursquarePhoto
     source_hash[:url] = source.fetch('url', '')
     result = [source_hash]
   end
+  
   def _reformat_user(user)
-    "not currently needed"
-    # source_hash = Hash.new
-    # source_hash[:name] = source.fetch('name', '')
-    # source_hash[:url] = source.fetch('url', '')
-    # result = [source_hash]
+    # "not currently needed"
+    user_hash = Hash.new
+    user_hash[:firstName]     = user.fetch('firstName', '')
+    user_hash[:lastName]      = user.fetch('lastName', '')
+    user_hash[:photo]         = user.fetch('photo', '').fetch('prefix', '')
+    user_hash[:photo]         << "100x100"
+    user_hash[:photo]         << user.fetch('photo', '').fetch('suffix', '')
+    result = [user_hash]
+    
+    # result = "#{user_hash[:firstName]} #{user_hash[:lastName]}"
   end
+
 end

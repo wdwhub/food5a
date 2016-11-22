@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809012421) do
+ActiveRecord::Schema.define(version: 20161119024616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,12 @@ ActiveRecord::Schema.define(version: 20160809012421) do
     t.string   "foursquare_venue_id"
     t.string   "prefix"
     t.string   "suffix"
-    t.string   "fousquare_user"
+    t.string   "foursquare_user_name"
     t.string   "visibility"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "foursquare_photo_id"
+    t.string   "user_icon"
   end
 
   create_table "cached_tips", force: :cascade do |t|
@@ -140,10 +141,10 @@ ActiveRecord::Schema.define(version: 20160809012421) do
     t.integer  "foursquare_venue_id"
     t.string   "prefix"
     t.string   "suffix"
-    t.string   "fousquare_user"
+    t.string   "foursquare_user_name"
     t.string   "visibility"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "foursquare_photo_id"
   end
 
