@@ -28,6 +28,7 @@ class FoursquareSync
     fsq_eatery_default  = FoursquareMissingVenue.new
     found_remote_fsq_venue    = find_remote_venue(venue_name) || fsq_eatery_default
     return if found_remote_fsq_venue == fsq_eatery_default
+    return
     remote_fsq_venue    = foursquare_venue_representation(found_remote_fsq_venue["id"])
     return fsq_eatery_default if remote_fsq_venue.name.to_s.length <= 3
     remote_fsq_venue_id = remote_fsq_venue.id
