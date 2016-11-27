@@ -20,6 +20,12 @@ class FoursquareSync
   def update_all_foursquare_eateries
     list = collect_all_wdw_venue_names_and_ids
     list.each { |venue| create_or_update_foursquare_eatery(venue_name: venue[:venue_name], venue_id: venue[:venue_id] ) }
+    #
+    # list = collect_all_cached_attraction_venue_names_and_ids
+    # list.each { |venue| create_or_update_cached_venue(cached_attraction_name: "#{venue[:cached_attraction_name]}", cached_attraction_id: venue[:cached_attraction_id])}
+
+    # list.each { |venue| create_or_update_cached_venue(cached_attraction_name: venue[:venue_name], cached_attraction_id: venue[:venue_id] ) }
+    
   end
   
   def create_or_update_foursquare_eatery(venue_name: , venue_id:)
@@ -28,7 +34,7 @@ class FoursquareSync
     fsq_eatery_default  = FoursquareMissingVenue.new
     found_remote_fsq_venue    = find_remote_venue(venue_name) || fsq_eatery_default
     return if found_remote_fsq_venue == fsq_eatery_default
-    return
+    # return
     remote_fsq_venue    = foursquare_venue_representation(found_remote_fsq_venue["id"])
     return fsq_eatery_default if remote_fsq_venue.name.to_s.length <= 3
     remote_fsq_venue_id = remote_fsq_venue.id
