@@ -8,12 +8,6 @@ class SyncWithDataSource < Thor
     TouringplansSync.new.update_all_venues
   end
   
-  desc "cached_attractions", "sync cached records with cached touringplans.com records"
-  def cached_attractions
-    say "Updating attractions from cached Touring Plans reviews…", :blue
-    AttractionSync.new.update_all_from_touringplans_com
-  end
-  
   desc "foursquare_venues", "sync cached records with foursquare.com"
   def foursquare_venues
     say "Updating Foursquare venues…", :blue
