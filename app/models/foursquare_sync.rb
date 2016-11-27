@@ -83,7 +83,7 @@ class FoursquareSync
       foursquare_venue_id:      venue_id                        || fsq_eatery_default.venue_id,
       prefix:                   image.prefix                    || fsq_eatery_default.prefix,
       suffix:                   image.suffix                    || fsq_eatery_default.suffix,
-      fousquare_user:           image.user.first.firstName.to_s || fsq_eatery_default.foursquare_user_first_name,
+      foursquare_user_name:     image.user.first.firstName.to_s || fsq_eatery_default.foursquare_user_first_name,
       user_icon:                image.user.first.photo          || fsq_eatery_default.foursquare_user_photo,
       visibility:               image.visibility                || fsq_eatery_default.visibility
       )

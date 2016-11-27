@@ -1,3 +1,3 @@
-class Image < Representation
+class Image < FoursquareVenuePhotosRep
   
 end
