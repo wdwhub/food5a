@@ -28,6 +28,7 @@ class FoursquareSync
     fsq_eatery_default  = FoursquareMissingVenue.new
     found_remote_fsq_venue    = find_remote_venue(venue_name) || fsq_eatery_default
     return if found_remote_fsq_venue == fsq_eatery_default
+    return
     remote_fsq_venue    = foursquare_venue_representation(found_remote_fsq_venue["id"])
     return fsq_eatery_default if remote_fsq_venue.name.to_s.length <= 3
     remote_fsq_venue_id = remote_fsq_venue.id
@@ -82,7 +83,7 @@ class FoursquareSync
       foursquare_venue_id:      venue_id                        || fsq_eatery_default.venue_id,
       prefix:                   image.prefix                    || fsq_eatery_default.prefix,
       suffix:                   image.suffix                    || fsq_eatery_default.suffix,
-      fousquare_user:           image.user.first.firstName.to_s || fsq_eatery_default.foursquare_user_first_name,
+      foursquare_user_name:     image.user.first.firstName.to_s || fsq_eatery_default.foursquare_user_first_name,
       user_icon:                image.user.first.photo          || fsq_eatery_default.foursquare_user_photo,
       visibility:               image.visibility                || fsq_eatery_default.visibility
       )

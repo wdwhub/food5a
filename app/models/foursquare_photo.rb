@@ -1,4 +1,4 @@
-require_relative "./representations/image"
+require "representations/image"
 
 class FoursquarePhoto
   attr_reader :client, :fsq_default_settings, :fsq_venue_default
@@ -23,7 +23,7 @@ class FoursquarePhoto
     # puts "==============="
     # puts response
     # puts "+++++++++++++++"
-    result = Representation.new(response)
+    result = FoursquareVenuePhotosRep.new(response)
     
   end
 

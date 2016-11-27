@@ -25,10 +25,11 @@ class FoursquareVenue
     puts venue
     puts "+++++++++++++++++++++++++++++++++++++++++++"
     # we choke on arrays that do not have at least one hash as its elements
-
+    
     location_hash                         = venue.fetch("location", {})
     venue["location"]                     = reformat_location(location_hash)
-    
+    been_here_hash                        = venue.fetch("beenHere", {})
+    venue["beenHere"]                     = reformat_been_here(been_here_hash)
     venue["categories"]                   = "complex, come back later" #.each { |category| category["icon"] = "not needed for wdwhub"} #[category.fetch("icon")] }
     venue["contact"]                      = "complex, come back later" #[venue.fetch("contact")]
     venue["hours"]                        = "complex, come back later" #[venue["hours"]]
@@ -65,7 +66,9 @@ class FoursquareVenue
     best_photo_hash                       = venue.fetch("bestPhoto", {})
     venue["bestPhoto"]                    = reformat_best_photo(best_photo_hash)
     result = venue
-    response = Representation.new(result)
+    # return venue
+    
+    # response = Representation.new(venue["stats"])
     
   end
   
@@ -104,6 +107,10 @@ class FoursquareVenue
     reformatted_location_hash["lat"]              = location_hash.fetch("lat", fsq_venue_default.lat)#"complex, come back later" #reformated_address
     reformatted_location_hash["lng"]              = location_hash.fetch("lng", fsq_venue_default.lng)#"complex, come back later" #reformated_address
     result = [reformatted_location_hash]
+  end
+  
+  def reformat_been_here(been_here_hash)
+    [been_here_hash]
   end
   
   def reformat_best_photo(photo_hash)
