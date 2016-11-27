@@ -1,4 +1,4 @@
-class TouringPlansParkSync
+class TouringPlansSync
   attr_accessor :client
   
   def initialize(client: TouringPlansClient.new)

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe TouringPlansParkSync, type: :model do
+RSpec.describe TouringPlansSync, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   subject { TouringPlansParkSync.new }
   describe '#title' do
