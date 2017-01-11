@@ -12,7 +12,7 @@ class VenuesController < ApplicationController
     @photos       = @venue.foursquare_eatery.find_cached_images
     @tips         = @venue.foursquare_eatery.find_cached_tips
     @dfb_articles = @venue.dfb_articles
-    @dfb_eatery   = @venue.dfb_eatery.first
+    @dfb_eatery   = @venue.dfb_eateries.first
   end
 
   # GET /venues/new

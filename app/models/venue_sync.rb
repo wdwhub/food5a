@@ -87,6 +87,7 @@ class VenueSync
     end
   end
 
+  ## this still needs work -- I.C. Expeditions, and Beaches & Cream Soda Shop vs Beaches & Cream To Go
   def attach_foursquare_eatery_to_venue(venue_id)
     permalink = Venue.find(venue_id).permalink
     fastener =     (SPECIALIZED_CLASSES[permalink] || DEFAULT_FOURSQUARE_CLASS ).new
