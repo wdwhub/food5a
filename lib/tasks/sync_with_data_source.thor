@@ -26,4 +26,10 @@ class SyncWithDataSource < Thor
     FoursquareSync.new.update_tips_for_all_venues
   end
 
+  desc "dfb_venues", "sync cached records with disneyfoodblog.com"
+  def dfb_venues
+    say "Updating Disney Food Blog venues…", :blue
+	DfbSync.new.update_venues
+  end
+
 end
