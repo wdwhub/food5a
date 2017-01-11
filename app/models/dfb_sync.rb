@@ -41,16 +41,23 @@ class DfbSync
           important_info:           remote_dfb_venue.important_info,
           you_might_also_like:      remote_dfb_venue.you_might_also_like,
     )
-    if remote_dfb_venue.reviewlinks.to_s.length > 3
-      remote_dfb_venue.reviewlinks.each do |review|
-        dfb_article           = dfb_eatery.dfb_articles.where(link: review.href).first_or_create
-        dfb_article.update(
-              title:                    review.title,
-        )
-
-      end
-      
-    end
+    # if remote_dfb_venue.reviewlinks.to_s.length > 3
+    #   remote_dfb_venue.reviewlinks.each do |review|
+    #     dfb_article           = dfb_eatery.dfb_articles.where(link: review.href).first_or_create
+    #     dfb_article.update(
+    #           title:                    review.title,
+    #     )
+    #
+    #   end
+    #
+    # end
+  end
+  
+  private
+  
+  def update_review_links
+    #add review_links to db
+    
   end
 end
   
