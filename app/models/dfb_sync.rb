@@ -3,10 +3,12 @@ class DfbSync
 
  
   def initialize(client: TouringPlansClient.new)
+    #refactor with update to DfbClient
     @client = client
   end
   
   def title
+    #refactor with update to "dfb sync"
     "touring plans park sync"
   end
 
