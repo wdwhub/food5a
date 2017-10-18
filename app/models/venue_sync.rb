@@ -95,6 +95,7 @@ class VenueSync
   end
   
   def attach_all_foursquare_eateries
+    # why is this attach_dfb_eatery_to_venue?
     all_venue_ids.each do |venue_id|
       attach_dfb_eatery_to_venue(venue_id)
     end
