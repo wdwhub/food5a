@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.4.0"
 
 gem "autoprefixer-rails"
-gem "delayed_job_active_record"
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.2'
 gem "flutie"
 gem "honeybadger"
 gem "jquery-rails"
@@ -11,14 +11,13 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "~> 5.0.0"
+gem 'rails', '~> 5.1', '>= 5.1.4'
 gem "recipient_interceptor"
-gem "sass-rails", "~> 5.0"
-gem "simple_form"
+gem 'sass-rails', '~> 5.0', '>= 5.0.6'
+gem 'simple_form', '~> 3.5'
 gem "skylight"
 gem "sprockets", ">= 3.0.0"
 gem "sprockets-es6"
-gem "suspenders"
 gem "title"
 gem "uglifier"
 
@@ -26,19 +25,19 @@ group :development do
   gem "listen"
   gem "spring"
   gem "spring-commands-rspec"
-  gem "web-console"
+  gem 'web-console', '~> 3.5', '>= 3.5.1'
 end
 
 group :development, :test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
-  gem "dotenv-rails"
+  gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
   gem "refills"
-  gem "rspec-rails", "~> 3.5.0.beta4"
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development, :staging do
@@ -75,7 +74,7 @@ gem 'foursquare2', '~> 2.0', '>= 2.0.2'
 
 #admin
 gem 'remotipart', github: 'mshibuya/remotipart'
-gem 'rails_admin', '>= 1.0.0.rc'
+gem 'rails_admin', '~> 1.2'
 
 # fuzzy search
 gem 'fuzzy_match', '~> 2.1' # best match strings
