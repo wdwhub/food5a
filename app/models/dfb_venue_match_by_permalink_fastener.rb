@@ -6,7 +6,7 @@ class DfbVenueMatchByPermalinkFastener
   # end
   
   def title
-    "i am the permalink fastner"
+    "i am the permalink fastener"
   end
   def fuse_with_venue(venue_id)
     # VenueFastener.new(attachment_class).fuse_with_venue

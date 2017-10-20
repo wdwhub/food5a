@@ -78,3 +78,6 @@ gem 'rails_admin', '~> 1.2'
 
 # fuzzy search
 gem 'fuzzy_match', '~> 2.1' # best match strings
+
+# dynamic tagging of articles, photos 
+gem 'acts-as-taggable-on', '~> 5.0'

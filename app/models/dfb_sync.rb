@@ -26,8 +26,9 @@ class DfbSync
     remote_dfb_venue = DfbVenueFactory.for(representation: representation).add_details(route: route)
     dfb_eatery             = DfbEatery.where(permalink: remote_dfb_venue.permalink).first_or_create
     puts "==== #{dfb_eatery.permalink} ==="
-    puts dfb_eatery.name
-    puts remote_dfb_venue.reviewlinks
+    puts "name: #{dfb_eatery.name}"
+    puts "route: #{route}"
+    puts "reviewlinks: #{remote_dfb_venue.reviewlinks}"
     puts "======================="
     
   # We do not need to have a fallback value because we did that in the parsing and creation of the remote venue
@@ -43,23 +44,23 @@ class DfbSync
           important_info:           remote_dfb_venue.important_info,
           you_might_also_like:      remote_dfb_venue.you_might_also_like,
     )
-    # if remote_dfb_venue.reviewlinks.to_s.length > 3
-    #   remote_dfb_venue.reviewlinks.each do |review|
-    #     dfb_article           = dfb_eatery.dfb_articles.where(link: review.href).first_or_create
-    #     dfb_article.update(
-    #           title:                    review.title,
-    #     )
-    #
-    #   end
-    #
-    # end
+    if remote_dfb_venue.reviewlinks.to_s.length > 3
+      remote_dfb_venue.reviewlinks.each do |review|
+        update_article(dfb_eatery: dfb_eatery, representation: review)
+      end
+    
+    end
   end
   
   private
   
-  def update_review_links
+  def update_article(dfb_eatery:,representation:)
     #add review_links to db
-    
+        dfb_article           = dfb_eatery.dfb_articles.where(link: representation.href).first_or_create
+        dfb_article.update(
+              title:        representation.title,
+              link:         representation.href,
+        )
   end
 end
   
