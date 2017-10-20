@@ -1,4 +1,4 @@
-class CreateCachedPhotos < ActiveRecord::Migration[5.0]
+class CreateCachedPhotos < ActiveRecord::Migration[5.1]
   def change
     create_table :cached_photos do |t|
       t.integer :height

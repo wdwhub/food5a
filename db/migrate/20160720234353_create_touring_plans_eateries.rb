@@ -1,4 +1,4 @@
-class CreateTouringPlansEateries < ActiveRecord::Migration[5.0]
+class CreateTouringPlansEateries < ActiveRecord::Migration[5.1]
   def change
     create_table :touring_plans_eateries do |t|
       t.string :name

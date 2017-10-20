@@ -1,4 +1,4 @@
-class CreateCachedTips < ActiveRecord::Migration[5.0]
+class CreateCachedTips < ActiveRecord::Migration[5.1]
   def change
     create_table :cached_tips do |t|
       t.string :foursquare_tip_id
