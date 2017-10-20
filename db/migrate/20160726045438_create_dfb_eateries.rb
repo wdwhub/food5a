@@ -1,4 +1,4 @@
-class CreateDfbEateries < ActiveRecord::Migration[5.0]
+class CreateDfbEateries < ActiveRecord::Migration[5.1]
   def change
     create_table :dfb_eateries do |t|
       t.string :name

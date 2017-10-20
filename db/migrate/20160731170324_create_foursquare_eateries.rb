@@ -1,4 +1,4 @@
-class CreateFoursquareEateries < ActiveRecord::Migration[5.0]
+class CreateFoursquareEateries < ActiveRecord::Migration[5.1]
   def change
     create_table :foursquare_eateries do |t|
       t.string :name
