@@ -1,0 +1,18 @@
+    <div class="row">
+      <div class="medium-4 columns">
+        <h4>Venues</h4>
+              <%#= render  partial: "hotel_tip", collection: @hotel.tips.first(5) %>
+        <%= render :partial => "index_listing", :collection => @first_third %>
+      </div>
+      <div class="medium-4 columns">
+        <h4>&nbsp;</h4>
+        <%#= render :partial => "/venues/2017_10_layout/guest_comment", :collection => @venues[3..5] %>
+        <%= render :partial => "index_listing", :collection => @second_third %>
+      </div>
+      <div class="medium-4 columns">
+        <h4>&nbsp;</h4>
+        <%= render :partial => "index_listing", :collection => @last_third %>
+        <%#= render :partial => "/venues/2017_10_layout/guest_comment", :collection => @venues[7..8] %>
+      </div>
+    </div>
+
