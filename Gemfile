@@ -61,8 +61,11 @@ group :staging, :production do
 end
 
 gem 'high_voltage'
+#style
 gem 'bourbon', '5.0.0.beta.6'
 gem 'neat', '~> 1.8.0'
+gem 'foundation-rails', '~> 6.4', '>= 6.4.1.2'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 #customization
 gem 'turbolinks', '~> 5.0'
 
