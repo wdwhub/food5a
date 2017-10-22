@@ -10,8 +10,15 @@
    
     <%= yield %>
     <%#= render :partial => "footer" %>
-
+<!-- https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.js -->
+      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
       <%= render "javascript" %>
+      <script>
+        $(document).ready(function () {
+        $(document).foundation();
+      });
+      </script>
     </div>
   </body>
 </html>

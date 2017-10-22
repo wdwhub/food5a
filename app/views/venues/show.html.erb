@@ -1,1 +1,121 @@
-venue show page
+<section>
+    <p style="color: white">spacer</p>
+        <%#= render :partial => 'name' %>
+
+    
+    </section>
+
+<section id="carousel">
+<div class="news-image-gallery-container">
+  <div class="row">
+    <div class="small-12 medium-12 large-8 columns">
+      <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+        <ul class="orbit-container">
+          <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+          <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+           <% @photos.first(4).each do |image| %>
+          <li class="is-active orbit-slide">
+            <%= image_tag "#{image.prefix}914x457#{image.suffix}", alt: "Food" %>
+            <figcaption class="orbit-caption"><%= "#{@venue.name}" %></figcaption>
+          </li>
+          <% end -%>
+ 
+        </ul>
+        <nav class="orbit-bullets">
+          <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+          <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+          <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+          <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+        </nav>
+      </div>
+    </div>
+    <div class="small-12 medium-12 large-4 columns">
+      <div class="rounded-social-buttons">
+        <a class="social-button facebook" href="#"></a>
+        <a class="social-button twitter" href="#"></a>
+        <a class="social-button linkedin" href="#"></a>
+        <a class="social-button google-plus" href="#"></a>
+      </div>
+      <div class="clearfix"></div>
+          <%= render :partial =>  'venue_info_section' %>
+
+<!--       <h4 class="news-image-gallery-title">Extraterrestrial culture: How we express ourselves through space exploration</h4>
+      <p>
+        This is not a new thing. Terrestrial cultures have (always) had a degree of extraterrestrial-ity in them. Cultural astronomers and archeoastronomers...
+        <a href="#" class="read-more">
+          Read More
+        </a>
+      </p>
+ -->    </div>
+  </div>
+</div>
+
+
+</section>
+
+<section class="main-content">
+    <div class="photos-and-tips">
+        <div class="cards">
+                <% @photos.offset(4).first(10).each do |image| %>
+                
+                  <div class="card">
+                    <div class="card-image">
+                        <%= image_tag "#{image.prefix}600x600#{image.suffix}" %>
+                    </div>
+                    <div class="card-header" >
+
+                      <%= image_tag "#{image.user_icon}", size: "48x48" %> <%= "#{image.foursquare_user_name}" %>
+                    </div>
+                    <div class="card-copy">
+                    <!-- <%= image_tag "#{image.user_icon}", size: "48x48" %> <%= "#{image.foursquare_user_name}" %> -->
+                    
+                    </div>
+                  </div>
+                    
+                <% end %>
+
+            </div>
+            
+        <div class="tips">
+            
+            <%= render partial: "tip", collection: @tips.first(10) %>
+        </div>
+       
+    </div>
+    <div class="sidebar">
+        <%= render 'recommendations' %>
+
+        <%= render  'menus' %>
+
+        <%= render 'bloggings' %>
+        <%= render 'you_might_also_like' %>
+
+        <%= render 'when_to_pay' %>
+
+        <%= render :partial => 'tables_in_wonderland' %>
+
+    </div>
+</section>
+
+<!--  -->
+    <%= render :partial => "page_title" %>
+
+    <%#= render :partial => "featured_photo_gallery" %>
+
+    <hr>
+
+    <%#= render :partial => "primary_callout" %>
+
+    <hr>
+
+    <div class="row column text-center">
+      <h2>Guest Photos</h2>
+      <hr>
+    </div>
+
+    <%= render :partial => "guest_photo_gallery" %>
+
+    <hr>
+
+    <%#= render :partial => "guest_comments" %>
+    <%= render :partial => "callout_large_secondary" %>
