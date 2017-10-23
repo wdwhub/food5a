@@ -55,27 +55,6 @@
 
 <section class="main-content">
     <div class="photos-and-tips">
-        <div class="cards">
-                <% @photos.offset(4).first(10).each do |image| %>
-                
-                  <div class="card">
-                    <div class="card-image">
-                        <%= image_tag "#{image.prefix}600x600#{image.suffix}" %>
-                    </div>
-                    <div class="card-header" >
-
-                      <%= image_tag "#{image.user_icon}", size: "48x48" %> <%= "#{image.foursquare_user_name}" %>
-                    </div>
-                    <div class="card-copy">
-                    <!-- <%= image_tag "#{image.user_icon}", size: "48x48" %> <%= "#{image.foursquare_user_name}" %> -->
-                    
-                    </div>
-                  </div>
-                    
-                <% end %>
-
-            </div>
-            
         <div class="tips">
             
             <%= render partial: "tip", collection: @tips.first(10) %>
