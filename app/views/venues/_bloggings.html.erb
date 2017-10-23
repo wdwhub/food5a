@@ -1,5 +1,11 @@
-<h1 id="bloggings">bloggings</h1>
-<ul>
-<%= render :partial => "dfb_article", :collection => @venue.dfb_articles %>
-    
-</ul>
+ <div class="row column text-center">
+  <h5>Bloggings and Articles</h5>
+  <!-- <h5><%= content_for?(:title) ? yield(:title) : "Walt Disney World Hotels | WDW Hub"  %></h5> -->
+  <hr>
+</div>
+<div class="row column">
+	<ul>
+	<%= render :partial => "dfb_article", :collection => @venue.dfb_articles %>	    
+	</ul>
+
+</div>

@@ -30,13 +30,13 @@
       </div>
     </div>
     <div class="small-12 medium-12 large-4 columns">
-      <div class="rounded-social-buttons">
+<!--       <div class="rounded-social-buttons">
         <a class="social-button facebook" href="#"></a>
         <a class="social-button twitter" href="#"></a>
         <a class="social-button linkedin" href="#"></a>
         <a class="social-button google-plus" href="#"></a>
       </div>
-      <div class="clearfix"></div>
+ -->      <div class="clearfix"></div>
           <%= render :partial =>  'venue_info_section' %>
 
 <!--       <h4 class="news-image-gallery-title">Extraterrestrial culture: How we express ourselves through space exploration</h4>
@@ -53,48 +53,37 @@
 
 </section>
 
-<section class="main-content">
-    <div class="photos-and-tips">
-        <div class="tips">
-            
-            <%= render partial: "tip", collection: @tips.first(10) %>
-        </div>
-       
+<div class="main-content">
+  <section class="tips">
+    <div class="row column text-center">
+      <hr />
+      <h2>Guest Tips</h2>
+      <hr />
     </div>
-    <div class="sidebar">
-        <%= render 'recommendations' %>
-
-        <%= render  'menus' %>
-
-        <%= render 'bloggings' %>
-        <%= render 'you_might_also_like' %>
-
-        <%= render 'when_to_pay' %>
-
-        <%= render :partial => 'tables_in_wonderland' %>
-
+        <div class="row column">
+      <%= render partial: "tip", collection: @tips.first(10) %>
     </div>
-</section>
+  </section>
+         
 
-<!--  -->
-    <%= render :partial => "page_title" %>
+  <!--  -->
+  <% if @venue.dfb_articles.count.to_i > 2 %>
 
-    <%#= render :partial => "featured_photo_gallery" %>
+  <section id="bloggings">
+    <%= render 'bloggings' %>
 
-    <hr>
-
-    <%#= render :partial => "primary_callout" %>
-
-    <hr>
+  </section>
+  <% end %>
 
     <div class="row column text-center">
+      <hr />
       <h2>Guest Photos</h2>
       <hr>
+      <%= render :partial => "guest_photo_gallery" %>
     </div>
 
-    <%= render :partial => "guest_photo_gallery" %>
 
-    <hr>
-
+      <hr>
+</div>
     <%#= render :partial => "guest_comments" %>
     <%= render :partial => "callout_large_secondary" %>
