@@ -1,6 +1,8 @@
   <div class="column">
     <!-- <img class="thumbnail" src="http://placehold.it/300x400"> -->
     <%= image_tag "#{guest_photo.prefix}600x600#{guest_photo.suffix}", class: "thumbnail" %>
-    <h5><%= "#{guest_photo.foursquare_user_name}" %><%#= "by: #{guest_photo.photographer_first_name} #{guest_photo.photographer_last_name}" if guest_photo.photographer_first_name %></h5>
-    <p>taken: <%= "#{Time.at(guest_photo.created_at_by_epoch).strftime("%B %Y")}" %></p>
+    <h5><%= image_tag "#{guest_photo.user_icon}", size: "48x48" %>
+    	&nbsp;
+		<%= "#{guest_photo.foursquare_user_name}" %></h5>
+    <span><%= "#{Time.at(guest_photo.created_at_by_epoch).strftime("%B %Y")}" %></span>
   </div>
