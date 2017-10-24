@@ -27,7 +27,6 @@ programming in style.
 * [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
 * [Style](http://github.com/thoughtbot/guides/blob/master/style)
 
-
 ## Deploying
 
 If you have previously run the `./bin/setup` script,
