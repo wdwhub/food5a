@@ -1,7 +1,7 @@
   <div class="column">
     <!-- <img class="thumbnail" src="http://placehold.it/300x400"> -->
-    <%= image_tag "#{guest_photo.prefix}600x600#{guest_photo.suffix}", class: "thumbnail" %>
-    <h5><%= image_tag "#{guest_photo.user_icon}", size: "48x48" %>
+    <%= image_tag "#{guest_photo.prefix}600x600#{guest_photo.suffix}", class: "thumbnail guest-photo" %>
+    <h5><%= image_tag "#{guest_photo.user_icon}", size: "48x48", class: "thumbnail guest-icon" %>
     	&nbsp;
 		<%= "#{guest_photo.foursquare_user_name}" %></h5>
     <span><%= "#{Time.at(guest_photo.created_at_by_epoch).strftime("%B %Y")}" %></span>
