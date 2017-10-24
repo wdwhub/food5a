@@ -24,7 +24,7 @@ class Admin < Thor
     sleep(1)
     DfbSync.new.update_venues
 
-    say "Updating Disney Food Blog venues…", :blue
+    say "Updating displayed venues…", :blue
     sleep(1)
     vs = VenueSync.new
     say "Updating venues with cached data from touringplans.com", :green
@@ -74,7 +74,7 @@ class SyncWithDataSource < Thor
 
   desc "eatery_venues", "sync and connect displayed venues with cached data from DFB, touring_plans, and foursquare"
   def eatery_venues
-    say "Updating Disney Food Blog venues…", :blue
+    say "Updating displayed venues…", :blue
     vs = VenueSync.new
     say "Updating venues with cached data from touringplans.com", :green
     vs.update_all_from_touringplans_com

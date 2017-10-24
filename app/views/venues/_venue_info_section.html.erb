@@ -1,55 +1,73 @@
 <div class="venueInfoSection">
     <div class="topVenueSection">
-        <div class="mainIconWrapper hasCustomIcon">
-            <a href="/waltdisneyworld"><img src="https://irs1.4sqi.net/img/user/88x88/A0MEDWHVOTWJNUVQ.jpg" alt="Walt Disney World Resort" class="avatar" title="Walt Disney World Resort" data-retina-url="https://irs1.4sqi.net/img/user/176x176/A0MEDWHVOTWJNUVQ.jpg" height="88" width="88"></a>
-        </div>
-        <div class="primaryInfo">
-            <div class="venueNameSection">
-                <h1 class="venueName" itemprop="name">
+<!--         <div class="mainIconWrapper hasCustomIcon"> -->
+            <!-- <a href="/waltdisneyworld"><img src="https://irs1.4sqi.net/img/user/88x88/A0MEDWHVOTWJNUVQ.jpg" alt="Walt Disney World Resort" class="avatar" title="Walt Disney World Resort" data-retina-url="https://irs1.4sqi.net/img/user/176x176/A0MEDWHVOTWJNUVQ.jpg" height="88" width="88"></a> -->
+        <!-- </div> -->
+            <div class="row">
+                <h5 class="small-9 medium-9 large-9 columns" >
                     <%= @venue.name %>
-                </h1>
-            </div>
-            <div class="categories">
-                <span class="unlinkedCategory">Resort</span>
+                </h5>     
+
+                <div class="venueRatingBlock small-3 medium-3 large-3 columns" 
+                    itemprop="aggregateRating" 
+                    itemscope="" 
+                    itemtype="http://schema.org/AggregateRating">
+                    <span class="venueScore positive" 
+                        title="<%= @venue.foursquare_eatery.rating.to_f %>/10" 
+                        style="background-color: #<%= @venue.foursquare_eatery.rating_color %>;">
+                        <span itemprop="ratingValue">
+                            <%= @venue.foursquare_eatery.rating.to_f %>
+                        </span>
+                        <sup>/<span itemprop="bestRating">10</span>
+                        </sup>
+                    </span>
+                    <div class="numRatingsBlock">
+                        <div class="numRatings" itemprop="ratingCount">
+                            
+                        </div>
+                        <div class="numRatingsLabel">
+                            
+                        </div>
+                    </div>
+                    <div class="likeDislikeControls comboRatingButton">
+                        <div class="comboRatingButtonLike like"></div>
+                        <div class="comboRatingButtonOk ok"></div>
+                        <div class="comboRatingButtonDislike dislike"></div>
+                    </div>
+                </div>
             </div>
             <div class="locationInfo">
                 <span class="venueNeighborhood">Walt Disney World Resort</span>, 
                 <span class="venueCity"><%= @venue.foursquare_eatery.address %></span>
             </div>
-            <div class="bottomVenueSection"></div>
-        </div>
+            <!-- <div > -->
+                <!-- <span class="unlinkedCategory">Resort</span> -->
+            <!-- </div> -->
+    <div >
+    <hr />
+    <div class="row">
+        <%= render 'recommendations' %>        
     </div>
-    <div class="sectionsBar">
-        <div class="sectionInfo">
-            <!-- <span class="sectionInfoName">venue.name</span> -->
-        </div>
-        <div class="venueRateBlock" 
-            itemprop="aggregateRating" 
-            itemscope="" 
-            itemtype="http://schema.org/AggregateRating">
-            <span class="venueScore positive" 
-                title="<%= @venue.foursquare_eatery.rating.to_f %>/10" 
-                style="background-color: #<%= @venue.foursquare_eatery.rating_color %>;">
-                <span itemprop="ratingValue">
-                    <%= @venue.foursquare_eatery.rating.to_f %>
-                </span>
-                <sup>/<span itemprop="bestRating">10</span>
-                </sup>
-            </span>
-            <div class="numRatingsBlock">
-                <div class="numRatings" itemprop="ratingCount">
-                    
-                </div>
-                <div class="numRatingsLabel">
-                    
-                </div>
-            </div>
-            <div class="likeDislikeControls comboRatingButton">
-                <div class="comboRatingButtonLike like"></div>
-                <div class="comboRatingButtonOk ok"></div>
-                <div class="comboRatingButtonDislike dislike"></div>
-            </div>
-        </div>
+    <div class="row">
+        <%= render  'menus' %>
     </div>
+<% if @venue.dfb_articles.count.to_i > 2 %>
+    <div class="row">
+        <h5 id="bloggings">bloggings</h5>
+        <ul>
+            <%= render :partial => "dfb_article", :collection => @venue.dfb_articles.limit(2) %>
+        </ul>
+    </div>
+<% end %>
+    <div class="row">
+        <%= render 'you_might_also_like' %>
+    </div>
+    <div class="row">
+        <%= render 'when_to_pay' %>
+    </div>
+    <div class="row">
+        <%= render :partial => 'tables_in_wonderland' %>
+    </div>
+
     <div id="sectionsBarPlaceholder" style="display: none;"></div>
 </div>
