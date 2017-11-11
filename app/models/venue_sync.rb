@@ -42,10 +42,12 @@ class VenueSync
         service_rating:             tp_venue.service_rating           || venue_default_values.service_rating,
         friendliness_rating:        tp_venue.friendliness_rating      || venue_default_values.friendliness_rating,
         thumbs_up:                  tp_venue.thumbs_up                || venue_default_values.thumbs_up,
-        adult_breakfast_menu_url:   tp_venue.adult_breakfast_menu_url || \
+        adult_breakfast_menu_url:   _menu_url(touring_plans_meal_hours: tp_venue.breakfast_hours, official_disney_url: tp_venue.operator_url, meal: "breakfast") || \
          venue_default_values.adult_breakfast_menu_url,
-        adult_lunch_menu_url:       tp_venue.adult_lunch_menu_url     || venue_default_values.adult_lunch_menu_url,
-        adult_dinner_menu_url:      tp_venue.adult_dinner_menu_url    || venue_default_values.adult_dinner_menu_url,
+        adult_lunch_menu_url:       _menu_url(touring_plans_meal_hours: tp_venue.lunch_hours, official_disney_url: tp_venue.operator_url, meal: "lunch")     || \
+         venue_default_values.adult_lunch_menu_url,
+        adult_dinner_menu_url:      _menu_url(touring_plans_meal_hours: tp_venue.dinner_hours, official_disney_url: tp_venue.operator_url)    || \
+         venue_default_values.adult_dinner_menu_url,
         child_breakfast_menu_url:   tp_venue.child_breakfast_menu_url || \
          venue_default_values.child_breakfast_menu_url,
         child_lunch_menu_url:       tp_venue.child_lunch_menu_url     || venue_default_values.child_lunch_menu_url,
@@ -54,7 +56,7 @@ class VenueSync
         requires_pre_payment:       tp_venue.requires_pre_payment     || venue_default_values.requires_pre_payment,
         extinct_on:                 tp_venue.extinct_on               || venue_default_values.extinct_on,
         opened_on:                  tp_venue.opened_on                || venue_default_values.opened_on,
-        disney_permalink:           tp_venue.disney_permalink         || venue_default_values.disney_permalink,
+        disney_permalink:           tp_venue.operator_url             || venue_default_values.disney_permalink,
         code:                       tp_venue.code                     || venue_default_values.code,
         short_name:                 tp_venue.short_name               || venue_default_values.short_name,
         accepts_tiw:                tp_venue.accepts_tiw              || venue_default_values.accepts_tiw,
@@ -98,6 +100,15 @@ class VenueSync
     # why is this attach_dfb_eatery_to_venue?
     all_venue_ids.each do |venue_id|
       attach_dfb_eatery_to_venue(venue_id)
+    end
+  end
+
+  def _menu_url(touring_plans_meal_hours:, official_disney_url:, meal: "dinner")
+    # temporary until we write our own menu scrape and display features
+    if touring_plans_meal_hours.to_s.length > 5
+      "#{official_disney_url}menus/#{meal}"
+    else
+      nil
     end
   end
 
