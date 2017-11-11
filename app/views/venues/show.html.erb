@@ -1,3 +1,4 @@
+<%= render :partial => "svg_sprite"%>
 <script>
   // show more text
   $(document).ready(function() {
@@ -67,12 +68,13 @@
   }
 </style>
 
+
 <section>
     <p style="color: white">spacer</p>
         <%#= render :partial => 'name' %>
 
     
-    </section>
+</section>
 
 <section id="carousel">
 <div class="news-image-gallery-container">
@@ -85,7 +87,9 @@
            <% @photos.first(4).each do |image| %>
           <li class="is-active orbit-slide">
             <%= image_tag "#{image.prefix}914x457#{image.suffix}", alt: "Food", class: "slide" %>
-            <figcaption class="orbit-caption"><%= "#{@venue.name}" %></figcaption>
+            <figcaption class="orbit-caption">
+              <svg class="icon"><use xlink:href="#foursquare_icon" /></svg>&nbsp;<%= "#{@venue.name}" %>
+            </figcaption>
           </li>
           <% end -%>
  
@@ -127,6 +131,7 @@
     <div class="row column text-center">
       <hr />
       <h2>Guest Tips</h2>
+
       <hr />
     </div>
         <div class="row column">
