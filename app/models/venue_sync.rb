@@ -21,7 +21,7 @@ class VenueSync
         category_code:              tp_venue.category_code            || venue_default_values.category_code,
         portion_size:               tp_venue.portion_size             || venue_default_values.portion_size,
         cost_code:                  tp_venue.cost_code                || venue_default_values.cost_code,
-        cuisine:                    tp_venue.permalink                || venue_default_values.permalink,
+        cuisine:                    tp_venue.cuisine                  || venue_default_values.cuisine,
         phone_number:               tp_venue.phone_number             || venue_default_values.phone_number,
         entree_range:               tp_venue.entree_range             || venue_default_values.entree_range,
         when_to_go:                 tp_venue.when_to_go               || venue_default_values.when_to_go,
