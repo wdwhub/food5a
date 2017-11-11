@@ -1,1 +1,25 @@
-<h5 id="menus">Menus</h5>
+<h5 id="menus">Hours & Menus</h5>
+	<% if @venue.breakfast_hours.to_s.length > 6 %>
+		<div class="row columns">
+			<div class="medium-3 columns"><strong>Breakfast:</strong>&nbsp;</div>
+			<div class="medium-9 columns"><%= "#{@venue.breakfast_hours}"  %>&nbsp;&nbsp;			
+				<%= link_to "Menu", @venue.adult_breakfast_menu_url, target: "blank" %>
+			</div>
+		</div>
+	<% end %>
+	<% if @venue.lunch_hours.to_s.length > 6 %>
+		<div class="row columns">
+			<div class="medium-3 columns"><strong>Lunch:</strong>&nbsp;</div>
+			<div class="medium-9 columns"><%= "#{@venue.lunch_hours}"  %>&nbsp;&nbsp;
+				<%= link_to "Menu", @venue.adult_lunch_menu_url, target: "blank" %>
+			</div>
+		</div>
+	<% end %>
+	<% if @venue.dinner_hours.to_s.length > 6 %>
+		<div class="row columns">
+			<div class="medium-3 columns"><strong>Dinner:</strong>&nbsp;</div>
+			<div class="medium-9 columns"><%= "#{@venue.dinner_hours}"  %>&nbsp;&nbsp;
+				<%= link_to "Menu", @venue.adult_dinner_menu_url, target: "blank" %>
+			</div>
+		</div>
+	<% end %>
