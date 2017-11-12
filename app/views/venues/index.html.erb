@@ -16,9 +16,17 @@
   }
 <% end %>
 <div class="page-container">
+  <%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, "Name contains" %>
+    <%= f.text_field :name_cont %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
   <div class="building-block-preview">
     <div class="row align-center expanded building-block-iframe-wrapper">
-      <iframe class="building-block-iframe" src="/venues_iframes" frameborder="0"></iframe>
+      <iframe class="building-block-iframe" src="<%= venues_iframes_path(q: request.query_parameters[:q]) %>" frameborder="0"></iframe>
     </div>
   </div>
 </div>

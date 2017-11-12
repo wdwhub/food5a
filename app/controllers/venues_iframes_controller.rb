@@ -1,6 +1,7 @@
 class VenuesIframesController < ApplicationController
   def index
-  	@venues = Venue.all
+    @search = Venue.search(params[:q])
+    @venues = @search.result
   end
 
   def show
