@@ -3,12 +3,15 @@ class VenuesController < ApplicationController
 
   # GET /venues
   def index
-    @venues = Venue.has_foursquare_eatery.order(thumbs_up: :desc).limit(60)
-    venues_count_third      =  @venues.count/3
-    venues_count_two_thirds =  2*(@venues.count/3)
-    @first_third            = @venues.first(venues_count_third)
-    @second_third           = @venues.limit(venues_count_third).offset(venues_count_third)
-    @last_third             = @venues.limit(venues_count_third).offset(venues_count_two_thirds)
+
+    @search = Venue.search(params[:q])
+    @venues = @search.result
+
+    # venues_count_third      =  @venues.count/3
+    # venues_count_two_thirds =  2*(@venues.count/3)
+    # @first_third            = @venues.first(venues_count_third)
+    # @second_third           = @venues.limit(venues_count_third).offset(venues_count_third)
+    # @last_third             = @venues.limit(venues_count_third).offset(venues_count_two_thirds)
 
   end
 

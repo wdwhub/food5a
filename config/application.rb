@@ -15,5 +15,8 @@ module Food5a
     end
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_job.queue_adapter = :delayed_job
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'SAMEORIGIN'
+    }
   end
 end

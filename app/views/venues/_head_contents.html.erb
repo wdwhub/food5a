@@ -1,0 +1,30 @@
+<!-- head contents -->
+<!-- <meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Are you ready to eat all the goodness that is Walt Disney World?">
+<title>News/Magazine Card | Foundation 6</title>
+<link rel="icon" href="https://foundation.zurb.com/building-blocks/assets/img/favicon/foundation-favicon.ico" type="image/x-icon">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://foundation.zurb.com/building-blocks//assets/css/app.css?rev=8d8f4f46f0a6b757af87910b48612f57">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@wdwhub">
+<meta name="twitter:title" content="WDW Hub Dining at Walt Disney World">
+<meta name="og:title" content="WDW Hub Dining at Walt Disney World">
+<meta name="og:type" content="website">
+<meta name="twitter:description" content="There's a lot of great food to eat at Walt Disney World on your vacation.">
+<meta name="og:description" content="Article card great for news/magazine sites layouts. Use the grid to size the cards.">
+<meta name="twitter:image" content="https://foundation.zurb.com/building-blocks/assets/img/building-block/news-card/news-card.png">
+<meta name="og:image" content="https://foundation.zurb.com/building-blocks/assets/img/building-block/news-card/news-card.png"> -->
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= content_for?(:title) ? yield(:title) : "Walt Disney World Hotels | WDW Hub"  %></title>
+    <%= stylesheet_link_tag :application, media: "all" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    
+<style>
+	<%= yield :addl_head_styles %>	
+</style>

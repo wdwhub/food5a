@@ -1,0 +1,14 @@
+<% content_for :addl_head_styles do %>
+  .top_bar {
+  	display: none
+  }
+
+<% end %>
+
+
+
+
+
+<div class="row small-up-1 medium-up-3">
+	<%= render :partial => "card", :collection => @venues %>
+</div>

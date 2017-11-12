@@ -79,7 +79,8 @@ gem 'foursquare2', '~> 2.0', '>= 2.0.2'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '~> 1.2'
 
-# fuzzy search
+# search
+gem 'ransack', '~> 1.8', '>= 1.8.4' # general search
 gem 'fuzzy_match', '~> 2.1' # best match strings
 
 # dynamic tagging of articles, photos 
